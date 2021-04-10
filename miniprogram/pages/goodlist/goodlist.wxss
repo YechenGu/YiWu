@@ -1,1 +1,36 @@
-/* pages/goodlist/goodlist.wxss */
+.filter {
+  text-align: left;
+  padding: 5rpx;
+}
+
+.filter text{
+  height: 20px;
+  color: gray;
+  font-size: large;
+  text-align: center;
+}
+
+.goodContent{
+  padding: 10rpx;
+}
+
+
+.title{
+  padding: 5rpx;
+}
+
+.price{
+  padding: 5rpx;
+}
+
+.t-title{
+  font-weight: 500;
+  font-size: 18px;
+  text-align: left;
+}
+
+.t-price{
+  color: red;
+  font-size: 18px;
+  text-align: left;
+}

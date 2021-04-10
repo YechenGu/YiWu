@@ -27,6 +27,12 @@
         {
           "name": "publish",
           "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "goodlist",
+          "pathName": "pages/goodlist/goodlist",
           "scene": null
         }
       ]

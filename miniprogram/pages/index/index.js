@@ -3,8 +3,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    value: '',
-    active:0,
+    toSearch: '',
+    tabActive:0,
     tabs:[
       {
         id:0,
@@ -30,22 +30,45 @@ Page({
   },
 
   /**
-   * 搜索框事件
+   * tab栏事件
    */
-  onChange(e) {
+  tabChange(e) {
     this.setData({
-      active:e.detail.index
+      tabActive:e.detail.index
     });
     //console.log(this.data.active)
   },
 
-  onSearch() {
-    console.log('1')
-  },
-  onClick() {
-    console.log(this.data)
+  /**
+   * 搜索框事件
+   */
+  searchChange(e) {
+    this.setData({
+      toSearch: e.detail,
+    });
   },
 
+  search() {
+    console.log(this.data.toSearch)
+    wx.navigateTo({
+      url: '../goodlist/goodlist',
+    })
+  },
+
+  /**
+   * 按钮事件
+   */
+  full(){
+    
+  },
+
+  score(){
+
+  },
+
+  free(){
+    
+  },
   /**
    * 图片事件
    */

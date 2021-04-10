@@ -1,20 +1,75 @@
 <!--pages/goodlist/goodlist.wxml-->
 <view>
-  <van-search
-  value="{{value}}"
-  placeholder="请输入搜索关键词"
-  use-action-slot
-  bind:change="onChange"
-  bind:search="onSearch"
-  >
-  <view slot="action" bind:tap="onClick">搜索</view>
-  </van-search>
+  <!-- 顶部选择器 -->
+  <van-dropdown-menu active-color="#1989fa">
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+    <van-dropdown-item id="item" title="{{ itemTitle }}">
+      <!-- 价格区间 -->
+      <van-cell>
+        <van-cell-group>
+          <view class="filter">
+            <text>价格区间</text>
+          </view>
+          <van-field value="{{ minPrice }}" placeholder="最低价" type="number" clearable border="{{ false }}"
+            bind:change="setMinPrice" />
+          <van-field value="{{ maxPrice }}" placeholder="最高价" type="number" clearable border="{{ false }}"
+            bind:change="setMaxPrice" />
+        </van-cell-group>
+      </van-cell>
+      <!-- 交易方式 -->
+      <van-cell>
+        <view class="filter">
+          <text>交易方式</text>
+        </view>
+        <van-radio-group value="{{ radioTrans }}" direction="horizontal" bind:change="radioTransChange">
+          <van-radio name="1">面交</van-radio>
+          <van-radio name="2">自取</van-radio>
+          <van-radio name="3">快递</van-radio>
+        </van-radio-group>
+      </van-cell>
+      <!-- 二手标价 -->
+      <van-cell>
+        <view class="filter">
+          <text>二手标价</text>
+        </view>
+        <van-radio-group value="{{ radioPrice }}" direction="horizontal" bind:change="radioPriceChange">
+          <van-radio name="1">人民币</van-radio>
+          <van-radio name="2">积分</van-radio>
+          <van-radio name="3">免费送</van-radio>
+        </van-radio-group>
+      </van-cell>
+      <!-- 发布时间 -->
+      <van-cell>
+        <view class="filter">
+          <text>发布时间</text>
+        </view>
+        <van-radio-group value="{{ radioTime }}" direction="horizontal" bind:change="radioTimeChange">
+          <van-radio name="1">1天内</van-radio>
+          <van-radio name="2">7天内</van-radio>
+          <van-radio name="3">14天内</van-radio>
+          <van-radio name="3">30天内</van-radio>
+        </van-radio-group>
+      </van-cell>
+      <!-- 提交筛选 -->
+      <view style="padding: 15px;text-align:center">
+        <van-button width="100%" round type="info" bind:click="submit">确定</van-button>
+      </view>
+    </van-dropdown-item>
+  </van-dropdown-menu>
 
-  <van-card
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="https://img.yzcdn.cn/vant/cat.jpeg"
-/>
+  <scroll-view style="height:90vh" scroll-y scroll-with-animation class="goodContent">
+    <van-grid column-num="2" gutter="{{ 10 }}">
+      <van-grid-item use-slot wx:for="{{ 6 }}" wx:for-item="index" wx:key="id">
+        <image style="width: 100%; height: 300rpx;" mode="aspectFit"
+          src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
+        <view class="title">
+          <text class="t-title">这是标题这是标题这是标题</text>
+        </view>
+        <view class="price">
+          <text class="t-price">这是价格</text>
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </scroll-view>
 </view>
