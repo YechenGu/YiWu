@@ -1,0 +1,15 @@
+<view class="area">
+  <textarea confirm-type="done" placeholder="请输入反馈，以便我们提供更好的服务" />
+  </view>
+<van-divider />
+<view class="contact">
+  <van-field value="{{ contact }}" clearable label="邮箱/手机号" placeholder="请输入"/>
+</view>
+<van-divider />
+<van-goods-action>
+  <van-goods-action-button
+    text="提交"
+    type="info"
+    bind:click="submit"
+  />
+</van-goods-action>

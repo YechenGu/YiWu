@@ -16,7 +16,7 @@
   <van-grid column-num="3" border="{{ false }}">
     <!-- 我的发布 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/myPublish/myPublish">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
         <view class="txt">
           <text>我的发布</text>
@@ -25,42 +25,42 @@
     </view>
     <!-- 我的收藏 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/collect/collect">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
         <view class="txt">
           <text>我的收藏</text>
         </view>
       </van-grid-item>
     </view>
-    <!-- 我的发布 -->
+    <!-- 我的积分 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/score/score">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
         <view class="txt">
           <text>我的积分</text>
         </view>
       </van-grid-item>
     </view>
-    <!-- 我的收藏 -->
+    <!-- 个人信息 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/info/info">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-4.jpg" />
         <view class="txt">
           <text>个人信息</text>
         </view>
       </van-grid-item>
-    </view><!-- 我的发布 -->
+    </view><!-- 意见反馈 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/report/report">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-5.jpg" />
         <view class="txt">
           <text>意见反馈</text>
         </view>
       </van-grid-item>
     </view>
-    <!-- 我的收藏 -->
+    <!-- 推荐我们 -->
     <view class="info-item">
-      <van-grid-item use-slot>
+      <van-grid-item use-slot bind:click="onClick">
         <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-6.jpg" />
         <view class="txt">
           <text>推荐我们</text>
@@ -68,4 +68,8 @@
       </van-grid-item>
     </view>
   </van-grid>
+
+  <!-- 分享面板 -->
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
+    bind:close="onClose" />
 </view>

@@ -1,0 +1,14 @@
+.basic{
+  margin: 50rpx;
+  text-align: center;
+}
+
+.score{
+  margin: 50rpx;
+}
+
+.t-score{
+  color: orange;
+  font-weight: 600;
+  font-size: larger;
+}

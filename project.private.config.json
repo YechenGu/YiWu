@@ -39,6 +39,36 @@
         {
           "name": "good",
           "pathName": "pages/good/good",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "myPublish",
+          "pathName": "pages/myPublish/myPublish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "collect",
+          "pathName": "pages/collect/collect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "score",
+          "pathName": "pages/score/score",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "info",
+          "pathName": "pages/info/info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "report",
+          "pathName": "pages/report/report",
           "scene": null
         }
       ]

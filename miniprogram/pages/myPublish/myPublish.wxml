@@ -1,0 +1,12 @@
+<scroll-view style="height:95vh" scroll-y scroll-with-animation class="goodContent">
+  <van-card price="10.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/cat.jpeg">
+    <view slot="footer">
+      <van-button icon="delete-o" size="mini"></van-button>
+    </view>
+  </van-card>
+  <van-card price="10.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/cat.jpeg">
+    <view slot="footer">
+      <van-button icon="delete-o" size="mini"></van-button>
+    </view>
+  </van-card>
+</scroll-view>

@@ -1,0 +1,11 @@
+.out{
+  padding: 30rpx 20rpx;
+}
+
+.notice{
+  padding: 20rpx;
+}
+
+.notice text{
+  color: gray;
+}

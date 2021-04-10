@@ -1,0 +1,7 @@
+<!--pages/score/score.wxml-->
+<view class="basic">
+  <image style="width: 100px; height: 100px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+  <view class="score">
+    <text class="t-score">233积分</text>
+  </view>
+</view>
