@@ -1,9 +1,7 @@
 /* pages/home/home.wxss */
-.joinImg .van-image{
+.joinImg van-image{
   width: 100%;
-  padding:15rpx;
-  border: transparent 1px solid;
-  border-radius: 5px;
+  padding:10rpx 15rpx;
 }
 
 .grid{
@@ -17,4 +15,29 @@
 
 .chooseType van-button{
   padding: 0 10rpx;
+}
+
+.goodContent{
+  padding: 10rpx;
+}
+
+
+.title{
+  padding: 5rpx;
+}
+
+.price{
+  padding: 5rpx;
+}
+
+.t-title{
+  font-weight: 500;
+  font-size: 18px;
+  text-align: left;
+}
+
+.t-price{
+  color: red;
+  font-size: 18px;
+  text-align: left;
 }

@@ -17,13 +17,20 @@
           <van-button round color="gray" size="mini" bind:click="score">积分兑换</van-button>
           <van-button round color="gray" size="mini" bind:click="free">免费</van-button>
         </view>
-        <van-grid column-num="2" gutter="{{ 10 }}">
-          <van-grid-item use-slot wx:for="{{ 4 }}" wx:for-item="index" wx:key="id">
-            <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
-            <text style="font-weight: normal; font-size: 20px;">这是标题</text>
-            <text style="font-weight: normal; font-size: 30px;">这是价格</text>
-          </van-grid-item>
-        </van-grid>
+        <scroll-view style="height:60vh" scroll-y scroll-with-animation class="goodContent">
+          <van-grid column-num="2" gutter="{{ 10 }}">
+            <van-grid-item use-slot wx:for="{{ 6 }}" wx:for-item="index" wx:key="id">
+              <image style="width: 100%; height: 300rpx;" mode="aspectFit"
+                src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
+              <view class="title">
+                <text class="t-title">这是标题这是标题这是标题</text>
+              </view>
+              <view class="price">
+                <text class="t-price">这是价格</text>
+              </view>
+            </van-grid-item>
+          </van-grid>
+        </scroll-view>
       </van-tab>
     </van-tabs>
   </view>
