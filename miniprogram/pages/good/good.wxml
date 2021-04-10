@@ -30,9 +30,13 @@
 
   <!-- 底部栏 -->
   <van-goods-action>
-    <van-goods-action-icon icon="chat-o" text="收藏" bind:click="collect" />
-    <van-goods-action-icon icon="cart-o" text="分享" bind:click="share" />
+    <van-goods-action-icon icon="like-o" text="收藏" bind:click="collect" />
+    <van-goods-action-icon icon="share-o" text="分享" bind:click="onClick" />
     <van-goods-action-button text="立即兑换" type="info" disabled round bind:click="exchange" />
     <van-goods-action-button text="联系买家" type="info" round bind:click="contact" />
   </van-goods-action>
+
+  <!-- 分享面板 -->
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
+    bind:close="onClose" />
 </scroll-view>

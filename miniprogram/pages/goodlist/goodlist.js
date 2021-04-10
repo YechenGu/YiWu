@@ -56,7 +56,7 @@ Page({
    * 提交筛选
    */
   submit(){
-
+    this.selectComponent('#item').toggle();
   },
 
 });
