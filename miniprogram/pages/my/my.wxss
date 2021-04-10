@@ -1,0 +1,9 @@
+.head{
+  display: flex;
+}
+.head van-image{
+  flex: 1;
+}
+.head text{
+  flex: 3;
+}

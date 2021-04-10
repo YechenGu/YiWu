@@ -1,0 +1,21 @@
+.scrollPage{
+  background: #fff !important;
+}
+
+.section{
+  padding: 35rpx 15rpx;
+}
+
+.addimg{
+  border-style: dashed ;
+  border-width: 1px;
+  border-color: gray;
+  border-radius: 5px;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+
+
+
+

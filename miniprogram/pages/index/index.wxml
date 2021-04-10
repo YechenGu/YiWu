@@ -1,0 +1,20 @@
+<home wx:if="{{PageCur=='home'}}"></home>
+<my wx:if="{{PageCur=='my'}}"></my>
+
+<view class="cu-bar tabbar  bg-white  shadow  foot">
+    <view class="action text-green" bindtap="NavChange" data-cur="home">
+        <view class="cuIcon-home {{PageCur=='home'?'text-green':'text-gray'}}"></view>
+        <view class="{{PageCur=='home'?'text-green':'text-gray'}}">首页</view>
+    </view>
+
+    <view class="action text-gray add-action">
+        <button class="cu-btn cuIcon-add bg-green shadow" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"></button>
+        发布
+    </view>
+
+    <view class="action text-gray" bindtap="NavChange" data-cur="my">
+        <view class="cuIcon-my {{PageCur=='my'?'text-green':'text-gray'}}">
+        </view>
+        <view class="{{PageCur=='my'?'text-green':'text-gray'}}">我的</view>
+    </view>
+</view>
