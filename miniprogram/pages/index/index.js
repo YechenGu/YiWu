@@ -1,35 +1,57 @@
-Page({
-
+Page({  
   /**
    * 页面的初始数据
    */
   data: {
-    PageCur: 'home'
+    value: '',
+    active:0,
+    tabs:[
+      {
+        id:0,
+        value:"推荐"
+      },
+      {
+        id:1,
+        value:"教材图书"
+      },
+      {
+        id:2,
+        value:"服饰鞋包"
+      },
+      {
+        id:3,
+        value:"数码产品"
+      },
+      {
+        id:4,
+        value:"运动户外"
+      },
+    ]
   },
 
-  NavChange(e) {
+  /**
+   * 搜索框事件
+   */
+  onChange(e) {
     this.setData({
-      PageCur: e.currentTarget.dataset.cur
+      active:e.detail.index
+    });
+    //console.log(this.data.active)
+  },
+
+  onSearch() {
+    console.log('1')
+  },
+  onClick() {
+    console.log(this.data)
+  },
+
+  /**
+   * 图片事件
+   */
+  joinUs(){
+    wx.navigateTo({
+      url: '../joinUs/joinUs',
     })
   },
-
-  onGotUserInfo(e){
-    console.log(e.detail)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
-
-    if (e.detail.userInfo){
-      wx.navigateTo({
-        url: '/pages/publish/publish',
-      })
-    }
-    else if(e.detail.userInfo == undefined){
-      wx.showToast({
-        title: '请先授权登录哟!',
-        icon: 'none',
-        duration: 2000
-      })
-    }
-  }
 })

@@ -1,0 +1,20 @@
+/* pages/home/home.wxss */
+.joinImg .van-image{
+  width: 100%;
+  padding:15rpx;
+  border: transparent 1px solid;
+  border-radius: 5px;
+}
+
+.grid{
+  width: 100%;
+  padding: 20rpx;
+}
+
+.chooseType{
+  padding: 15rpx;
+}
+
+.chooseType van-button{
+  padding: 0 10rpx;
+}

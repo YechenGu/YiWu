@@ -1,20 +1,30 @@
-<home wx:if="{{PageCur=='home'}}"></home>
-<my wx:if="{{PageCur=='my'}}"></my>
+<view>
 
-<view class="cu-bar tabbar  bg-white  shadow  foot">
-    <view class="action text-green" bindtap="NavChange" data-cur="home">
-        <view class="cuIcon-home {{PageCur=='home'?'text-green':'text-gray'}}"></view>
-        <view class="{{PageCur=='home'?'text-green':'text-gray'}}">首页</view>
-    </view>
+  <van-search value="{{value}}" placeholder="请输入搜索关键词" use-action-slot bind:change="onChange" bind:search="onSearch">
+    <view slot="action" bind:tap="onClick">搜索</view>
+  </van-search>
 
-    <view class="action text-gray add-action">
-        <button class="cu-btn cuIcon-add bg-green shadow" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"></button>
-        发布
-    </view>
+  <view class="joinImg">
+    <van-image width="375" height="10rem" fit="fill" src="https://img.yzcdn.cn/vant/cat.jpeg" bind:click="joinUs" />
+  </view>
 
-    <view class="action text-gray" bindtap="NavChange" data-cur="my">
-        <view class="cuIcon-my {{PageCur=='my'?'text-green':'text-gray'}}">
+  <view class="tabs">
+    <van-tabs swipeable active="{{ active }}" bind:change="onChange">
+      <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}" >
+        <view class="chooseType">
+        <van-button round color="red" size="mini">全部</van-button>
+        <van-button round color="gray" size="mini">积分兑换</van-button>
+        <van-button round color="gray" size="mini">免费</van-button>
         </view>
-        <view class="{{PageCur=='my'?'text-green':'text-gray'}}">我的</view>
-    </view>
+        <van-grid column-num="2" gutter="{{ 10 }}">
+          <van-grid-item use-slot wx:for="{{ 4 }}" wx:for-item="index" wx:key="id" >
+            <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
+            <text style="font-weight: normal; font-size: 20px;">这是标题</text>
+            <text style="font-weight: normal; font-size: 30px;">这是价格</text>
+          </van-grid-item>
+        </van-grid>
+      </van-tab>
+    </van-tabs>
+  </view>
+
 </view>
