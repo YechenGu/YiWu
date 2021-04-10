@@ -1,9 +1,29 @@
-.head{
+/* 用户栏目 */
+.info-sumarry {
+  background-color: white;
+  padding: 25rpx;
+  font-size: 28rpx;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.head van-image{
-  flex: 1;
+
+.info-sumarry .left-part {
+  display: flex;
+  align-items: center;
 }
-.head text{
-  flex: 3;
+
+.info-sumarry .left-part .user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25rpx;
+}
+
+/* 相关信息 */
+.info{
+  padding: 30rpx;
+}
+
+.info-item .txt{
+  padding: 15rpx;
 }
