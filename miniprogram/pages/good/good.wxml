@@ -1,0 +1,38 @@
+<!--pages/good/good.wxml-->
+<scroll-view style="height:95vh" scroll-y scroll-with-animation class="goodContent">
+  <view class="title">
+    <text class="t-title">这是标题</text>
+  </view>
+  <view class="price">
+    <text class="t-price">这是价格</text>
+  </view>
+  <view class="tags">
+    <van-tag round type="danger" size="medium">自取</van-tag>
+    <van-tag round type="danger" size="medium">服饰鞋包</van-tag>
+    <van-tag round type="danger" size="medium">东校区</van-tag>
+  </view>
+  <van-divider />
+  <view class="detail">
+    <text class="t-detail">二手详情</text>
+  </view>
+  <view class="info">
+    <text class="t-info">这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍</text>
+  </view>
+  <view class="goodImg">
+    <image style="width: 100%; height: 400rpx;" mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+  </view>
+  <view class="report">
+    <van-button type="default" size="small" bind:click="report">举报</van-button>
+  </view>
+  <view class="TaSell">
+    <van-cell is-link title="TA还在卖" link-type="navigateTo" url="/pages/TaSell/TaSell" />
+  </view>
+
+  <!-- 底部栏 -->
+  <van-goods-action>
+    <van-goods-action-icon icon="chat-o" text="收藏" bind:click="collect" />
+    <van-goods-action-icon icon="cart-o" text="分享" bind:click="share" />
+    <van-goods-action-button text="立即兑换" type="info" disabled round bind:click="exchange" />
+    <van-goods-action-button text="联系买家" type="info" round bind:click="contact" />
+  </van-goods-action>
+</scroll-view>

@@ -1,0 +1,53 @@
+.title{
+  padding: 30rpx 20rpx 10rpx;
+}
+
+.price{
+  padding: 15rpx 20rpx;
+}
+
+.detail{
+  padding: 20rpx;
+}
+
+.info{
+  padding: 10rpx 20rpx;
+}
+
+.tags{
+  padding: 10rpx;
+}
+
+.goodImg{
+  margin:30rpx 20rpx;
+  border:5rpx solid gray;
+}
+
+.report{
+  padding: 10rpx 20rpx;
+  text-align: right;
+}
+
+.t-title{
+  font-weight: 500;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.t-price{
+  color: red;
+  font-size: 40rpx;
+  text-align: left;
+}
+
+.t-detail{
+  font-size: 35rpx;
+}
+
+.t-info{
+  font-size: 30rpx;
+}
+
+.TaSell{
+  margin: 20rpx;
+}

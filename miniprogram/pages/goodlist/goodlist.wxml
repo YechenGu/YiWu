@@ -60,7 +60,7 @@
 
   <scroll-view style="height:90vh" scroll-y scroll-with-animation class="goodContent">
     <van-grid column-num="2" gutter="{{ 10 }}">
-      <van-grid-item use-slot wx:for="{{ 6 }}" wx:for-item="index" wx:key="id">
+      <van-grid-item use-slot url="/pages/good/good" wx:for="{{ 6 }}" wx:for-item="index" wx:key="id">
         <image style="width: 100%; height: 300rpx;" mode="aspectFit"
           src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
         <view class="title">

@@ -4,7 +4,9 @@
     "pages/publish/publish",
     "pages/my/my",
     "pages/joinUs/joinUs",
-    "pages/goodlist/goodlist"
+    "pages/goodlist/goodlist",
+    "pages/good/good",
+    "pages/TaSell/TaSell"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -49,6 +51,7 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-field": "@vant/weapp/field/index",
     "van-radio": "@vant/weapp/radio/index",
-    "van-radio-group": "@vant/weapp/radio-group/index"
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-divider": "@vant/weapp/divider/index"
   }
 }
