@@ -10,7 +10,7 @@
   </view>
 
   <view class="tabs">
-    <van-tabs swipeable active="{{ tabActive }}" bind:change="tabChange">
+    <van-tabs swipeable animated active="{{ tabActive }}" bind:change="tabChange">
       <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}">
         <view class="chooseType">
           <van-button round color="red" size="mini" bind:click="full">全部</van-button>

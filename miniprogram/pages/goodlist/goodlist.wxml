@@ -45,10 +45,10 @@
           <text>发布时间</text>
         </view>
         <van-radio-group value="{{ radioTime }}" direction="horizontal" bind:change="radioTimeChange">
-          <van-radio name="1">1天内</van-radio>
-          <van-radio name="2">7天内</van-radio>
-          <van-radio name="3">14天内</van-radio>
-          <van-radio name="3">30天内</van-radio>
+          <van-radio name="1">不限</van-radio>
+          <van-radio name="2">1天内</van-radio>
+          <van-radio name="3">7天内</van-radio>
+          <van-radio name="4">14天内</van-radio>
         </van-radio-group>
       </van-cell>
       <!-- 提交筛选 -->
