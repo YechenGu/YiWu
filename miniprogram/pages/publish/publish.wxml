@@ -1,10 +1,99 @@
 <scroll-view scroll-y scroll-with-animation style="height:100vh">
 
-<view class="section">
-    <form bindsubmit="formSubmit" bindreset="formReset">
-      
+    <view class="section">
+        <form bindsubmit="formSubmit">
+            <!-- 图片上传 -->
+            <view class="upload" max-count="1">
+                <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+            </view>
+            <view>
+                <!-- 标题 -->
+                <van-field label="标题" clearable value="{{ title }}" placeholder="" border="{{ false }}"
+                    input-align='right' bind:change="titleChange" />
+                <view class="area">
+                    <!-- 商品描述 -->
+                    <textarea confirm-type="done" placeholder="描述您的二手:如品牌,价格,原价,转手原因等" />
+                    </view>
+                        <!-- 商品分类 -->
+                        <van-cell title="选择分类" value="{{ radio }}" is-link bind:click="showPopup" />
+                        <!-- 二手标价 -->
+                        <van-cell title="二手标价" title-width="200rpx">
+                            <van-radio-group value="{{ priceSe }}" bind:change="priceChange" direction="horizontal">
+                                <van-radio name="1">人民币</van-radio>
+                                <van-radio name="2">积分</van-radio>
+                                <van-radio name="3">免费</van-radio>
+                            </van-radio-group>
+                        </van-cell>
+                        <!-- 价格 -->
+                        <van-field label="价格" clearable value="{{ title }}" placeholder="{{placePrice}}" type="number" input-align='right' 
+                        disabled="{{disPrice}}" bind:change="setPrice" />
+                        <!-- 交易方式 -->
+                        <van-cell title="交易方式" title-width="200rpx">
+                            <van-radio-group value="{{ waySe }}" bind:change="wayChange" direction="horizontal">
+                                <van-radio name="1">面交</van-radio>
+                                <van-radio name="2">自取</van-radio>
+                                <van-radio name="3">快递</van-radio>
+                            </van-radio-group>
+                        </van-cell>
+                        <!-- 校区选择 -->
+                        <van-cell-group>
+                            <van-cell title="校区" value="{{ region }}" is-link bind:click="pickPopup" />
+                        </van-cell-group>
+                        <!-- 校区选择器 -->
+                        <van-popup show="{{ showPick }}" position="bottom" bind:close="pickClose">
+                            <van-picker columns="{{ columns }}" show-toolbar="true" toolbar-position="bottom" bind:cancel="pickCancel"
+                            bind:confirm="pickConfirm" bind:change="pickChange" />
+                        </van-popup>
+                        <!-- 提交按钮 -->
+                        <van-goods-action>
+                            <van-goods-action-button text="发布" type="info" bind:click="submit" />
+                        </van-goods-action>
+            </view>
 
-    </form>
-</view>
+            <!-- 弹出层 -->
+            <van-popup show="{{ popUp }}" position="right" custom-style="width: 40%;height:100%" bind:close="popClose">
+                <!-- 单选框 -->
+                <van-radio-group value="{{ radio }}" bind:change="radioChange">
+                    <van-cell-group>
+                        <van-cell title="教材图书" clickable data-name="教材图书" bind:click="radioClick">
+                        <van-radio use-icon-slot name="1" />
+                        </van-cell>
+
+                        <van-cell title="服饰鞋包" clickable data-name="服饰鞋包" bind:click="radioClick">
+                        <van-radio use-icon-slot name="2" />
+                        </van-cell>
+
+                        <van-cell title="数码产品" clickable data-name="数码产品" bind:click="radioClick">
+                        <van-radio use-icon-slot name="3" />
+                        </van-cell>
+
+                        <van-cell title="运动户外" clickable data-name="运动户外" bind:click="radioClick">
+                        <van-radio use-icon-slot name="4" />
+                        </van-cell>
+
+                        <van-cell title="家居用品" clickable data-name="家居用品" bind:click="radioClick">
+                        <van-radio use-icon-slot name="5" />
+                        </van-cell>
+
+                        <van-cell title="玩具乐器" clickable data-name="玩具乐器" bind:click="radioClick">
+                        <van-radio use-icon-slot name="6" />
+                        </van-cell>
+
+                        <van-cell title="办公文具" clickable data-name="办公文具" bind:click="radioClick">
+                        <van-radio use-icon-slot name="7" />
+                        </van-cell>
+                        
+                        <van-cell title="票务卡券" clickable data-name="票务卡券" bind:click="radioClick">
+                        <van-radio use-icon-slot name="8" />
+                        </van-cell>
+
+                        <van-cell title="其他" clickable data-name="其他" bind:click="radioClick">
+                        <van-radio use-icon-slot name="9" />
+                        </van-cell>
+                    </van-cell-group>
+                </van-radio-group>
+            </van-popup>
+        </form>
+    </view>
 
 </scroll-view>
