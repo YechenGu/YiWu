@@ -1,10 +1,10 @@
 <scroll-view scroll-y scroll-with-animation style="height:100vh">
 
     <view class="section">
-        <form bindsubmit="formSubmit" bindreset="formReset">
+        <form bindsubmit="formSubmit" bindreset="formReset" preview-image="true">
             <!-- 图片上传 -->
-            <view class="upload" max-count="1">
-                <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+            <view class="upload">
+                <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="1"/>
             </view>
             <view>
                 <!-- 标题 -->
@@ -25,7 +25,7 @@
                             </van-radio-group>
                         </van-cell>
                         <!-- 价格 -->
-                        <van-field label="价格" clearable value="{{ title }}" placeholder="{{placePrice}}" type="number" input-align='right' 
+                        <van-field label="价格" clearable value="{{ price }}" placeholder="{{placePrice}}" type="number" input-align='right' 
                         disabled="{{disPrice}}" bind:change="setPrice" />
                         <!-- 交易方式 -->
                         <van-cell title="交易方式" title-width="200rpx">

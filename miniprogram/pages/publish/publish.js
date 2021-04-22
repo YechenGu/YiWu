@@ -8,6 +8,7 @@ Page({
         radio:'',
         priceSe:'1',
         waySe:'1',
+        price:'',
         placePrice:'元',
         disPrice:false,
         region:'',
@@ -21,20 +22,26 @@ Page({
      * @param {*} event 参数
      */
     afterRead(event) {
-        const { file } = event.detail;
-        // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-        wx.uploadFile({
-          url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-          filePath: file.url,
-          name: 'file',
-          formData: { user: 'test' },
-          success(res) {
-            // 上传完成需要更新 fileList
-            const { fileList = [] } = this.data;
-            fileList.push({ ...file, url: res.data });
-            this.setData({ fileList });
-          },
-        });
+        const path = event.detail.file.url;
+        if (!path.length) {
+          wx.showToast({ title: '请选择图片', icon: 'none' });
+        } else {
+          const cloudPath = "ranzar"+Date.now()+".jpg";
+          wx.cloud.uploadFile({
+            //云路径暂时以时间为路径
+            cloudPath:cloudPath,
+            filePath: path
+          }).then(res=>{
+            wx.showToast({
+              title: '上传成功',
+            })
+            var addedFile = {
+              url:res.fileID
+            }
+            this.data.fileList.push(addedFile)
+            console.log(this.data.fileList)
+          })
+        }
       },
 
     formSubmit: function (e) {
