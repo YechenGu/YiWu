@@ -1,5 +1,5 @@
 <!-- 用户登录 -->
-<view class="info-sumarry " bindtap="goToLogin">
+<view wx:if="{{userInfo.avatarUrl}}" class="info-sumary">
   <view class="left-part">
     <view class="avatar">
       <image class="cu-avatar lg round" src="{{userInfo.avatarUrl}}"></image>
@@ -8,6 +8,11 @@
       <text class="text-orange"
         style="font-size: 32rpx; margin-bottom: 10rpx; font-weight: 600;">{{userInfo.nickName}}</text>
     </view>
+  </view>
+</view>
+<view wx:else class="info-sumary" bindtap="goToLogin">
+  <view class="user-info">
+    <text class="text-orange" style="font-size: 32rpx; margin-bottom: 10rpx; font-weight: 600;">点击登录</text>
   </view>
 </view>
 

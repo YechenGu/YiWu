@@ -1,3 +1,5 @@
+const db = wx.cloud.database()
+
 Page({  
   /**
    * 页面的初始数据
@@ -46,7 +48,8 @@ Page({
         id:9,
         value:"其他"
       },
-    ]
+    ],
+    good:""
   },
 
   /**
@@ -79,7 +82,11 @@ Page({
    * 按钮事件
    */
   full(){
-    
+    db.collection("good").where({
+      priceType:1
+    }).get().then(res=>{
+      console.log(res)
+    })
   },
 
   score(){

@@ -38,9 +38,11 @@ Page({
       },
 
     formSubmit: function (e) {
+      console.log(e)
     },
 
     formReset: function () {
+      console.log(1)
     },
     /**
      * 标题相关
@@ -150,10 +152,5 @@ Page({
     pickClose() {
         this.setData({ showPick: false });
       },
-      
-    submit() {
-        console.log('submit')
-      },
-
-    
+  
 })
