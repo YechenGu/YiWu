@@ -69,6 +69,12 @@
         {
           "name": "report",
           "pathName": "pages/report/report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "TaSell",
+          "pathName": "pages/TaSell/TaSell",
           "scene": null
         }
       ]

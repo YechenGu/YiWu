@@ -10,7 +10,8 @@
     "pages/collect/collect",
     "pages/score/score",
     "pages/info/info",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/TaSell/TaSell"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

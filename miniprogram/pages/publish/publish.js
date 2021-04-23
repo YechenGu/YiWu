@@ -1,4 +1,5 @@
 // pages/publish/publish.js
+let finallimgUrl = []
 
 Page({
     data: {
@@ -18,34 +19,77 @@ Page({
     },
 
     /**
-     * 上传图像相关
-     * @param {*} event 参数
+     * 上传图片
      */
-    afterRead(event) {
-        const path = event.detail.file.url;
-        if (!path.length) {
-          wx.showToast({ title: '请选择图片', icon: 'none' });
-        } else {
-          const cloudPath = "ranzar"+Date.now()+".jpg";
-          wx.cloud.uploadFile({
-            //云路径暂时以时间为路径
-            cloudPath:cloudPath,
-            filePath: path
-          }).then(res=>{
-            wx.showToast({
-              title: '上传成功',
-            })
-            var addedFile = {
-              url:res.fileID
-            }
-            this.data.fileList.push(addedFile)
-            console.log(this.data.fileList)
-          })
-        }
-      },
+    unloadimg() {
+      // console.log('hello')
+      let _that = this
+      wx.chooseImage({
+          count: 1,
+          success(res) {
+              // tempFilePath可以作为img标签的src属性显示图片
+              const tempFilePaths = res.tempFilePaths
+              console.log(tempFilePaths)
+
+              _that.setData({
+                  fileList: _that.data.fileList.concat(tempFilePaths)
+              })
+
+              let __that = _that
+              let uploads = [];
+              for (let i = 0; i < tempFilePaths.length; i++) {
+                  uploads[i] = new Promise((resolve, reject) => {
+                      wx.cloud.uploadFile({
+                          cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
+                          filePath: tempFilePaths[i], // 小程序临时文件路径
+                          success: res => {
+                              console.log(res)
+                              finallimgUrl.push(res.fileID)
+                              resolve(result)
+                          },
+                          fail: console.error
+                      })
+                  })
+              }
+              Promise.all(uploads).then((result) => {
+                  console.log(result)
+              })
+          }
+      })
+  },
+
+
+  /**
+   * 关闭图片
+   * @param {*} e 
+   */
+  closeimg(e) {
+      let currentTargetimgindex = e.currentTarget.dataset.index
+      // console.log(currentTargetimgindex)
+      this.data.fileList.splice(currentTargetimgindex, 1)
+      finallimgUrl.splice(currentTargetimgindex, 1)
+
+      console.log(finallimgUrl[currentTargetimgindex])
+
+      wx.cloud.deleteFile({
+          fileList: [finallimgUrl[currentTargetimgindex]],
+          success: res => {
+              // handle success
+              console.log(res.fileList)
+          },
+          fail: err => {
+              console.log("error")
+          }
+      })
+
+      this.setData({
+          fileList: this.data.fileList
+      })
+  },
+
 
     formSubmit: function (e) {
-      console.log(e)
+      console.log(e.detail.value)
     },
 
     formReset: function () {
