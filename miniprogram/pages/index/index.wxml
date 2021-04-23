@@ -6,27 +6,27 @@
   </van-search>
 
   <view class="joinImg">
-    <van-image width="375" height="10rem" fit="fill" src="https://img.yzcdn.cn/vant/cat.jpeg" bind:click="joinUs" />
+    <van-image width="375" height="10rem" fit="fill" src="https://img0.baidu.com/it/u=2114305751,1497064756&fm=26&fmt=auto&gp=0.jpg" bind:click="joinUs" />
   </view>
 
   <view class="tabs">
     <van-tabs swipeable animated active="{{ tabActive }}" bind:change="tabChange">
       <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}">
         <view class="chooseType">
-          <van-button round color="red" size="mini" bind:click="full">全部</van-button>
-          <van-button round color="gray" size="mini" bind:click="score">积分兑换</van-button>
-          <van-button round color="gray" size="mini" bind:click="free">免费</van-button>
+          <van-button round id="rmb" size="mini" bind:click="rmb">人民币</van-button>
+          <van-button round id="score" size="mini" bind:click="score">积分兑换</van-button>
+          <van-button round id="free" size="mini" bind:click="free">免费</van-button>
         </view>
         <scroll-view style="height:60vh" scroll-y scroll-with-animation class="goodContent">
           <van-grid column-num="2" gutter="{{ 10 }}">
-            <van-grid-item use-slot url="/pages/good/good" wx:for="{{ 6 }}" wx:for-item="index" wx:key="id">
+            <van-grid-item use-slot url="/pages/good/good" wx:for="{{ goodlist }}" wx:key="id">
               <image style="width: 100%; height: 300rpx;" mode="aspectFit"
-                src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg" />
+                src="{{item.img[0]}}" />
               <view class="title">
-                <text class="t-title">这是标题这是标题这是标题</text>
+                <text class="t-title">{{item.title}}</text>
               </view>
               <view class="price">
-                <text class="t-price">这是价格</text>
+                <text class="t-price">{{item.price}}</text>
               </view>
             </van-grid-item>
           </van-grid>

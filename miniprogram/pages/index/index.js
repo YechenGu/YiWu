@@ -1,17 +1,15 @@
 const db = wx.cloud.database()
+const _ = db.command
 
 Page({  
   /**
    * 页面的初始数据
    */
   data: {
+    goodlist:[],
     toSearch: '',
     tabActive:0,
     tabs:[
-      {
-        id:0,
-        value:"推荐"
-      },
       {
         id:1,
         value:"教材图书"
@@ -59,7 +57,14 @@ Page({
     this.setData({
       tabActive:e.detail.index
     });
-    //console.log(this.data.active)
+    var index = this.data.tabActive + 1 +"";
+    db.collection('good').where({
+      type:_.eq(index)
+    }).get().then(res=>{
+      this.setData({
+        goodlist:res.data
+      })
+    })
   },
 
   /**
@@ -81,20 +86,27 @@ Page({
   /**
    * 按钮事件
    */
-  full(){
-    db.collection("good").where({
-      priceType:1
-    }).get().then(res=>{
-      console.log(res)
-    })
+  rmb(){
+    document.getElementById("rmb").style.color = "red"
+    document.getElementById("score").style.color = "gray"
+    document.getElementById("free").style.color = "gray"
+    // db.collection("good").where({
+    //   priceType:1
+    // }).get().then(res=>{
+    //   console.log(res)
+    // })
   },
 
   score(){
-
+    document.getElementById("rmb").style.color = "gray"
+    document.getElementById("score").style.color = "red"
+    document.getElementById("free").style.color = "gray"
   },
 
   free(){
-    
+    document.getElementById("rmb").style.color = "gray"
+    document.getElementById("score").style.color = "gray"
+    document.getElementById("free").style.color = "red"
   },
   /**
    * 图片事件
@@ -102,6 +114,21 @@ Page({
   joinUs(){
     wx.navigateTo({
       url: '../joinUs/joinUs',
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var index = this.data.tabActive + 1 +"";
+    db.collection('good').where({
+      type:_.eq(index)
+    }).get().then(res=>{
+      console.log(res)
+      this.setData({
+        goodlist:res.data
+      })
     })
   },
 })

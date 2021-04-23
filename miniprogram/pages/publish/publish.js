@@ -135,10 +135,9 @@ Page({
         data: publishobj
       })
       .then(res => {
-        // var _id = res._id
-        // wx.redirectTo({
-        //   url: '../index/indexlistshow/indexlistshow?id=' + _id
-        // })
+        wx.switchTab({
+          url: '../index/index',
+        })
         wx.hideLoading({
           success: (res) => {},
         })
