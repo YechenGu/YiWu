@@ -31,9 +31,9 @@
                         <!-- 二手标价 -->
                         <van-cell title="二手标价" title-width="200rpx">
                             <van-radio-group value="{{ priceSe }}" bind:change="priceChange" direction="horizontal">
-                                <van-radio data-name="rmb">人民币</van-radio>
-                                <van-radio data-name="jf">积分</van-radio>
-                                <van-radio data-name="mf">免费</van-radio>
+                                <van-radio name="1">人民币</van-radio>
+                                <van-radio name="2">积分</van-radio>
+                                <van-radio name="3">免费</van-radio>
                             </van-radio-group>
                         </van-cell>
                         <!-- 价格 -->
@@ -42,9 +42,9 @@
                         <!-- 交易方式 -->
                         <van-cell title="交易方式" title-width="200rpx">
                             <van-radio-group value="{{ waySe }}" bind:change="wayChange" direction="horizontal">
-                                <van-radio data-name="mj">面交</van-radio>
-                                <van-radio data-name="zq">自取</van-radio>
-                                <van-radio data-name="kd">快递</van-radio>
+                                <van-radio name="1">面交</van-radio>
+                                <van-radio name="2">自取</van-radio>
+                                <van-radio name="3">快递</van-radio>
                             </van-radio-group>
                         </van-cell>
                         <!-- 校区选择 -->
