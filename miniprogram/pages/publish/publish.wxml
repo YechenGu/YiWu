@@ -21,7 +21,7 @@
             <view>
                 <!-- 标题 -->
                 <van-field label="标题" clearable name="title" placeholder="" border="{{ false }}"
-                    input-align='right' bind:change="titleChange" />
+                    input-align='right' />
                 <view class="area">
                     <!-- 商品描述 -->
                     <textarea confirm-type="done" name="describe" placeholder="描述您的二手:如品牌,价格,原价,转手原因等" />
@@ -38,7 +38,7 @@
                         </van-cell>
                         <!-- 价格 -->
                         <van-field label="价格" clearable name=price" placeholder="{{placePrice}}" type="number" input-align='right' 
-                        disabled="{{disPrice}}" bind:change="setPrice" />
+                        disabled="{{disPrice}}"/>
                         <!-- 交易方式 -->
                         <van-cell title="交易方式" title-width="200rpx">
                             <van-radio-group value="{{ waySe }}" bind:change="wayChange" direction="horizontal">
@@ -57,10 +57,9 @@
                             bind:confirm="pickConfirm" bind:change="pickChange" />
                         </van-popup>
                         <!-- 提交按钮 -->
-                        <van-goods-action>
-                            <van-button text="重置" type="default" form-type="reset"/>
-                            <van-button text="发布" type="info" form-type="submit"/>
-                        </van-goods-action>
+                        <view class="downbtn">
+                            <van-button type="info" round width="800rpx" form-type="submit">发布</van-button>
+                        </view>
             </view>
 
             <!-- 弹出层 -->

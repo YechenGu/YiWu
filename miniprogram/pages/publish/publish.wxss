@@ -71,3 +71,9 @@
   height: 400rpx;
   background-color: white;
 }
+
+.downbtn{
+  margin-top: 35rpx;
+  display: flex;
+  justify-content: center;
+}

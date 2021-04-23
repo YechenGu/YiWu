@@ -1,4 +1,6 @@
 // pages/publish/publish.js
+const db = wx.cloud.database()
+
 let finallimgUrl = []
 
 Page({
@@ -13,26 +15,25 @@ Page({
     region: '',
     showPick: false,
     columns: ['东校区', '中部校区', '西校区', '新校区'],
-
   },
 
   /**
    * 上传图片
    */
   unloadimg() {
-    // console.log('hello')
     let _that = this
     wx.chooseImage({
       count: 1,
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths)
 
         _that.setData({
           fileList: _that.data.fileList.concat(tempFilePaths)
         })
-
+        wx.showLoading({
+          title: '上传中',
+        })
         let __that = _that
         let uploads = [];
         for (let i = 0; i < tempFilePaths.length; i++) {
@@ -41,16 +42,20 @@ Page({
               cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
               filePath: tempFilePaths[i], // 小程序临时文件路径
               success: res => {
-                console.log(res)
                 finallimgUrl.push(res.fileID)
                 resolve(result)
               },
-              fail: console.error
+              fail: err=>{
+                console.log(err)
+              }
             })
           })
         }
+        wx.hideLoading({
+          success: (res) => {},
+        })
         Promise.all(uploads).then((result) => {
-          console.log(result)
+          console.log("result is:"+result)
         })
       }
     })
@@ -63,23 +68,21 @@ Page({
    */
   closeimg(e) {
     let currentTargetimgindex = e.currentTarget.dataset.index
-    // console.log(currentTargetimgindex)
+    console.log("currentTargetimgindex is"+currentTargetimgindex)
     this.data.fileList.splice(currentTargetimgindex, 1)
-    finallimgUrl.splice(currentTargetimgindex, 1)
-
-    console.log(finallimgUrl[currentTargetimgindex])
-
+    console.log("index is"+finallimgUrl[currentTargetimgindex])
     wx.cloud.deleteFile({
       fileList: [finallimgUrl[currentTargetimgindex]],
       success: res => {
         // handle success
-        console.log(res.fileList)
+        console.log("list is"+res.fileList)
       },
       fail: err => {
         console.log("error")
       }
     })
 
+    finallimgUrl.splice(currentTargetimgindex, 1)
     this.setData({
       fileList: this.data.fileList
     })
@@ -102,60 +105,51 @@ Page({
 
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     
-    let publishimg = finallimgUrllet 
+    let publishimg = finallimgUrl
     let title = e.detail.value.title
     let describe = e.detail.value.describe
-    let price = e.detail.value.price //想卖的价格
+    let price = e.detail.value.price 
+    let priceType = this.data.priceSe
+    let transType = this.data.waySe
+    let type = this.data.radio
+    let region = this.data.region
 
     let publishobj = {
-      description: textarea,
-      publishimgarr: publishimg,
-      Wanttosell: Wanttosell,
-      originalprice: originalprice,
-      publishTime: new Date().toLocaleString(),
-      placeofdispatch: placeofdispatch,
-      Allofsort: Allofsort,
-      CommonUse: CommonUse,
-      Wantpeople: 1,
-      Thumbupnumber: 0,
-      collectnumber: 0,
-      pageviewnumber: 0,
-      style: {
-        "color": "red"
-      },
+      img: publishimg,
+      title:title,
+      detail: describe,
+      price: price,
+      time: new Date().toLocaleString(),
+      priceType:priceType,
+      transType:transType,
+      type:type,
+      region:region
     }
 
+    wx.showLoading({
+      title: '提交中',
+    })
 
-    db.collection('publish').add({
+    db.collection('good').add({
         // data 字段表示需新增的 JSON 数据
         data: publishobj
       })
       .then(res => {
-        var _id = res._id
-        wx.redirectTo({
-          url: '../index/indexlistshow/indexlistshow?id=' + _id
+        // var _id = res._id
+        // wx.redirectTo({
+        //   url: '../index/indexlistshow/indexlistshow?id=' + _id
+        // })
+        wx.hideLoading({
+          success: (res) => {},
         })
       })
+      
   },
 
   formReset: function () {
     console.log(1)
   },
-  /**
-   * 标题相关
-   */
-  titleChange(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
-  },
-
-  /**
-   * 价格相关
-   */
-  setPrice(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
-  },
+  
 
   /**
    * 弹出层相关
@@ -176,7 +170,6 @@ Page({
    * 单选框相关
    */
   radioChange(event) {
-    console.log('1')
     this.setData({
       radio: event.detail,
     });
@@ -186,7 +179,7 @@ Page({
     const {
       name
     } = event.currentTarget.dataset;
-    console.log(event.currentTarget.dataset)
+    // console.log(event.currentTarget.dataset)
     this.setData({
       radio: name,
       popUp: false
@@ -236,7 +229,6 @@ Page({
       value,
       index
     } = event.detail;
-    console.log(event.detail)
   },
 
   pickPopup() {
@@ -246,7 +238,6 @@ Page({
   },
 
   pickConfirm(event) {
-    console.log('成功')
     this.setData({
       showPick: false,
       region: event.detail.value
