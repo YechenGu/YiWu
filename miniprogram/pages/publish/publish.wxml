@@ -20,7 +20,7 @@
             </view>
             <view>
                 <!-- 标题 -->
-                <van-field label="标题" clearable name="title" placeholder="" border="{{ false }}"
+                <van-field label="标题" clearable value="{{title}}" name="title" placeholder="" border="{{ false }}"
                     input-align='right' />
                 <view class="area">
                     <!-- 商品描述 -->
@@ -37,7 +37,7 @@
                             </van-radio-group>
                         </van-cell>
                         <!-- 价格 -->
-                        <van-field label="价格" clearable name=price" placeholder="{{placePrice}}" type="number" input-align='right' 
+                        <van-field label="价格" clearable name=price" value="{{price}}" placeholder="{{placePrice}}" type="number" input-align='right' 
                         disabled="{{disPrice}}"/>
                         <!-- 交易方式 -->
                         <van-cell title="交易方式" title-width="200rpx">
@@ -58,7 +58,8 @@
                         </van-popup>
                         <!-- 提交按钮 -->
                         <view class="downbtn">
-                            <van-button type="info" round width="800rpx" form-type="submit">发布</van-button>
+                            <van-button round width="100rpx" form-type="reset">重置</van-button>
+                            <van-button type="info" round width="100rpx" form-type="submit">发布</van-button>
                         </view>
             </view>
 

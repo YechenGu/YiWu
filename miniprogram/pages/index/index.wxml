@@ -2,7 +2,9 @@
 
   <van-search value="{{toSearch}}" placeholder="请输入搜索关键词" use-action-slot bind:change="searchChange"
     bind:search="search">
-    <view slot="action" bind:tap="search">搜索</view>
+    <view slot="action">
+      <navigator url='../goodlist/goodlist?name={{toSearch}}'>搜索</navigator>
+    </view>
   </van-search>
 
   <view class="joinImg">
@@ -13,9 +15,9 @@
     <van-tabs swipeable animated active="{{ tabActive }}" bind:change="tabChange">
       <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}">
         <view class="chooseType">
-          <van-button round id="rmb" size="mini" bind:click="rmb">人民币</van-button>
-          <van-button round id="score" size="mini" bind:click="score">积分兑换</van-button>
-          <van-button round id="free" size="mini" bind:click="free">免费</van-button>
+          <van-button round size="mini" bind:click="full">全部</van-button>
+          <van-button round size="mini" bind:click="score">积分兑换</van-button>
+          <van-button round size="mini" bind:click="free">免费</van-button>
         </view>
         <scroll-view style="height:60vh" scroll-y scroll-with-animation class="goodContent">
           <van-grid column-num="2" gutter="{{ 10 }}">

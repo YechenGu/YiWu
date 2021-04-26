@@ -76,37 +76,42 @@ Page({
     });
   },
 
-  search() {
-    console.log(this.data.toSearch)
-    wx.navigateTo({
-      url: '../goodlist/goodlist',
-    })
-  },
-
   /**
    * 按钮事件
    */
-  rmb(){
-    document.getElementById("rmb").style.color = "red"
-    document.getElementById("score").style.color = "gray"
-    document.getElementById("free").style.color = "gray"
-    // db.collection("good").where({
-    //   priceType:1
-    // }).get().then(res=>{
-    //   console.log(res)
-    // })
+  full(){
+    var index = this.data.tabActive + 1 +"";
+    db.collection("good").where({
+      type:_.eq(index)
+    }).get().then(res=>{
+      this.setData({
+        goodlist:res.data
+      })
+    })
   },
 
   score(){
-    document.getElementById("rmb").style.color = "gray"
-    document.getElementById("score").style.color = "red"
-    document.getElementById("free").style.color = "gray"
+    var index = this.data.tabActive + 1 +"";
+    db.collection("good").where({
+      priceType:_.eq("2"),
+      type:_.eq(index)
+    }).get().then(res=>{
+      this.setData({
+        goodlist:res.data
+      })
+    })
   },
 
   free(){
-    document.getElementById("rmb").style.color = "gray"
-    document.getElementById("score").style.color = "gray"
-    document.getElementById("free").style.color = "red"
+    var index = this.data.tabActive + 1 +"";
+    db.collection("good").where({
+      priceType:_.eq("3"),
+      type:_.eq(index)
+    }).get().then(res=>{
+      this.setData({
+        goodlist:res.data
+      })
+    })
   },
   /**
    * 图片事件
@@ -125,10 +130,15 @@ Page({
     db.collection('good').where({
       type:_.eq(index)
     }).get().then(res=>{
-      console.log(res)
       this.setData({
         goodlist:res.data
       })
     })
   },
+
+  onHide: function(){
+    this.setData({
+      toSearch:''
+    })
+  }
 })

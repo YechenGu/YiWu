@@ -8,6 +8,8 @@ Page({
     fileList: [],
     popUp: false,
     radio: '',
+    title: '',
+    price: '',
     priceSe: '1',
     waySe: '1',
     placePrice: '元',
@@ -145,8 +147,24 @@ Page({
       
   },
 
+  /**
+   * 重置表单
+   */
   formReset: function () {
-    console.log(1)
+    this.setData({
+     finallimgUrl: '',
+     fileList: [],
+     popUp: false,
+     radio: '',
+     title: '',
+     price: '',
+     priceSe: '1',
+     waySe: '1',
+     placePrice: '元',
+     disPrice: false,
+     region: '',
+     showPick: false,
+    })
   },
   
 
@@ -196,17 +214,20 @@ Page({
     if (event.detail == 3) {
       this.setData({
         placePrice: '0',
+        price: '0',
         disPrice: true
       });
     } else {
       if (event.detail == 1) {
         this.setData({
           placePrice: '元',
+          price: '',
           disPrice: false
         });
       } else {
         this.setData({
           placePrice: '积分',
+          price: '',
           disPrice: false
         });
       }
@@ -256,4 +277,9 @@ Page({
     });
   },
 
+  onHide:function(){
+    this.formReset()
+  }
 })
+
+//存在bug:重置列表后，需要清楚的图片没有真正清楚，仍然会继续上传
