@@ -3,6 +3,8 @@ const _ = db.command
 
 Page({
   data: {
+    order:'0',
+    region:'0',
     toSearch:'',
     goodlist:[],
     itemTitle: '筛选',
@@ -31,13 +33,15 @@ Page({
   * 价格设置相关
   */
   setMinPrice(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
+    this.setData({
+      minPrice: event.detail
+    })
   },
 
   setMaxPrice(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
+    this.setData({
+      maxPrice: event.detail
+    })
   },
   /**
    * 交易方式设置
@@ -62,6 +66,7 @@ Page({
    */
   submit(){
     this.selectComponent('#item').toggle();
+    this.query(this.data.region,this.data.order)
   },
 
 
@@ -70,125 +75,22 @@ Page({
    * @param {*} e 
    */
   priceChoose(e){
-    switch (e.detail) {
-      case 1:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          }
-        }).orderBy('price', 'asc').get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      case 2:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          }
-        }).orderBy('price', 'desc').get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      case 3:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          }
-        }).orderBy('time', 'desc').get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      default:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          }
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-    }
+    this.setData({
+      order:e.detail+''
+    })
+    this.query(this.data.region,this.data.order)
   },
 
+  /**
+   * 地区选择
+   * @param {*} e 
+   */
   regionChoose(e){
-    switch (e.detail) {
-      case 0:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          },
-          region:"东校区"
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      case 1:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          },
-          region:"中部校区"
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      case 2:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          },
-          region:"西校区"
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      case 3:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-           },
-          region:"新校区"
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-      default:
-        db.collection('good').where({
-          title:{
-            $regex:'.*'+ this.data.toSearch,
-            $options: 'i'
-          }
-        }).get().then(res=>{
-          this.setData({
-            goodlist:res.data
-          })
-        })
-        break;
-    }
+    this.setData({
+      region: e.detail+''
+    })
+    this.query(this.data.region,this.data.order)
+
   },
 
   /**
@@ -208,5 +110,95 @@ Page({
         goodlist:res.data
       })
     })
+  },
+
+  query: function(campus,order){
+    var min = (this.data.minPrice=='')?'0':this.data.minPrice+''
+    var max = (this.data.maxPrice=='')?'99999':this.data.maxPrice+''
+    var campus1
+    switch (campus) {
+      case "0":
+        campus1 = "东校区"
+        break;
+      case "1":
+        campus1 = "中部校区"
+        break;
+      case "2":
+        campus1 = "西校区"
+        break;
+      case "3":
+        campus1 = "新校区"
+        break;
+      default:
+        console.log("出错啦")
+        return;
+    }
+    switch (order) {
+      case "1":
+        db.collection('good').where({
+          title:{
+            $regex:'.*'+ this.data.toSearch,
+            $options: 'i'
+          },
+          region:_.eq(campus1),
+          price: _.and(_.gte(min),_.lte(max)),
+          priceType: _.eq(this.data.radioPrice+''),
+          transType:_.eq(this.data.radioTrans+'')
+        }).orderBy('price', 'asc').get().then(res=>{
+          this.setData({
+            goodlist:res.data
+          })
+        })
+        break;
+      case "2":
+        db.collection('good').where({
+          title:{
+            $regex:'.*'+ this.data.toSearch,
+            $options: 'i'
+          },
+          region:_.eq(campus1),
+          price: _.and(_.gte(min),_.lte(max)),
+          priceType: _.eq(this.data.radioPrice+''),
+          transType:_.eq(this.data.radioTrans+'')
+        }).orderBy('price', 'desc').get().then(res=>{
+          this.setData({
+            goodlist:res.data
+          })
+        })
+        break;
+      case "3":
+        db.collection('good').where({
+          title:{
+            $regex:'.*'+ this.data.toSearch,
+            $options: 'i'
+          },
+          region:_.eq(campus1),
+          price: _.and(_.gte(min),_.lte(max)),
+          priceType: _.eq(this.data.radioPrice+''),
+          transType:_.eq(this.data.radioTrans+'')
+        }).orderBy('time', 'desc').get().then(res=>{
+          this.setData({
+            goodlist:res.data
+          })
+        })
+        break;
+      default:
+        db.collection('good').where({
+          title:{
+            $regex:'.*'+ this.data.toSearch,
+            $options: 'i'
+          },
+          region:_.eq(campus1),
+          price: _.and(_.gte(min),_.lte(max)),
+          priceType: _.eq(this.data.radioPrice+''),
+          transType:_.eq(this.data.radioTrans+'')
+        }).get().then(res=>{
+          this.setData({
+            goodlist:res.data
+          })
+        })
+        break;
+    }
+    
   }
 });
