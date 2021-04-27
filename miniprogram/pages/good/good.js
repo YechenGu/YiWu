@@ -1,10 +1,13 @@
-// pages/good/good.js
+const db = wx.cloud.database()
+const _ = db.command
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    title:'',
     options: [
       { name: '微信', icon: 'wechat', openType: 'share' },
       { name: '微博', icon: 'weibo' },
@@ -51,4 +54,16 @@ Page({
   onSelect(event) {
     this.onClose();
   },
+
+  onLoad: function(options){
+    console.log(options.id)
+    db.collection('good')
+    .doc(options.id).get()
+    .then(res=>{
+      this.setData({
+        title:res.data.title
+      })
+    })
+    console.log(this.data.title)
+  }
 })

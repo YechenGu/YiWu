@@ -21,7 +21,7 @@
         </view>
         <scroll-view style="height:60vh" scroll-y scroll-with-animation class="goodContent">
           <van-grid column-num="2" gutter="{{ 10 }}">
-            <van-grid-item use-slot url="/pages/good/good" wx:for="{{ goodlist }}" wx:key="id">
+            <van-grid-item use-slot url="/pages/good/good?id={{item._id}}" wx:for="{{ goodlist }}" wx:key="id">
               <image style="width: 100%; height: 300rpx;" mode="aspectFit"
                 src="{{item.img[0]}}" />
               <view class="title">
