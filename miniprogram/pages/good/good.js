@@ -40,7 +40,26 @@ Page({
    * 底部栏功能
    */
   collect() {
-
+    let id = this.data.good._id
+    let title = this.data.good.title
+    let detail = this.data.good.detail
+    let price = this.data.good.price
+    let img = this.data.good.img[0]
+    db.collection('collect')
+    .add({
+      data:{
+        goodId:id,
+        title:title,
+        detail:detail,
+        price:price,
+        img:img
+      }
+    })
+    .then(res=> {
+      wx.showToast({
+        title: '添加成功',
+      })
+    })
   },
 
   exchange() {
