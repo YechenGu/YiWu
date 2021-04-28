@@ -1,16 +1,37 @@
-// pages/info/info.js
+const db = wx.cloud.database()
+const _ = db.command
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    openid:'',
     region:'',
     show: false,
     columns: ['东校区', '中部校区', '西校区', '新校区'],
     phone:'',
     wechat:'',
     qq:''
+  },
+
+  phoneChange(event) {
+    this.setData({
+      phone: event.detail
+    })
+  },
+
+  wechatChange(event) {
+    this.setData({
+      wechat: event.detail
+    })
+  },
+
+  qqChange(event) {
+    this.setData({
+      qq: event.detail
+    })
   },
 
   onChange(event) {
@@ -22,7 +43,6 @@ Page({
   },
 
   onConfirm(event) {
-    console.log('成功')
     this.setData({ 
       show: false ,
       region: event.detail.value
@@ -39,6 +59,44 @@ Page({
   },
   
   submit() {
-    console.log('submit')
+    if (this.data.region=='' || (this.data.phone=='' &&
+    this.data.wechat=='' && this.data.qq=='')) {
+      wx.showToast({
+        title: '请输入必要信息',
+        icon:'none'
+      })
+    } else {
+      //bug exists
+      db.collection('info')
+      .where({
+        openid:_.eq(this.data.openid)
+      }).set({
+        data:{
+          region:this.data.region,
+          phone:this.data.phone,
+          wechat:this.data.wechat,
+          qq:this.data.qq
+        }
+      }).then(res=>{
+        console.log(res)
+      })
+    }
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function () {
+    let that = this
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log('云函数获取到的openid:', res.result.openid)
+        var openid = res.result.openid;
+        that.setData({
+          openid:openid
+        })
+      }
+    })
+  }
 })
