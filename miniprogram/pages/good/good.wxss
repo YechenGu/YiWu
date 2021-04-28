@@ -20,7 +20,10 @@
 
 .goodImg{
   margin:30rpx 20rpx;
-  border:5rpx solid gray;
+}
+
+.goodContent{
+  padding: 10rpx;
 }
 
 .report{

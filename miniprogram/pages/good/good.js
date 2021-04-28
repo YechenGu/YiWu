@@ -7,19 +7,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:'',
-    options: [
-      { name: '微信', icon: 'wechat', openType: 'share' },
-      { name: '微博', icon: 'weibo' },
-      { name: '复制链接', icon: 'link' }
+    good: '',
+    transType: '',
+    type: '',
+    options: [{
+        name: '微信',
+        icon: 'wechat',
+        openType: 'share'
+      },
+      {
+        name: '微博',
+        icon: 'weibo'
+      },
+      {
+        name: '复制链接',
+        icon: 'link'
+      }
     ],
-    showShare:false
+    showShare: false
   },
 
   /**
    * 举报
    */
-  report(){
+  report() {
     wx.navigateTo({
       url: '../report/report',
     })
@@ -28,15 +39,15 @@ Page({
   /**
    * 底部栏功能
    */
-  collect(){
+  collect() {
 
   },
 
-  exchange(){
+  exchange() {
 
   },
 
-  contact(){
+  contact() {
 
   },
 
@@ -44,26 +55,79 @@ Page({
    * 分享界面相关
    */
   onClick(event) {
-    this.setData({ showShare: true });
+    this.setData({
+      showShare: true
+    });
   },
 
   onClose() {
-    this.setData({ showShare: false });
+    this.setData({
+      showShare: false
+    });
   },
 
   onSelect(event) {
     this.onClose();
   },
 
-  onLoad: function(options){
-    console.log(options.id)
+  onLoad: function (options) {
+    let that = this
     db.collection('good')
-    .doc(options.id).get()
-    .then(res=>{
-      this.setData({
-        title:res.data.title
+      .where({
+        _id: _.eq(options.id)
       })
-    })
-    console.log(this.data.title)
+      .get()
+      .then(res => {
+        that.setData({
+          good: res.data[0]
+        })
+        var type1 = ''
+        var transType1 = ''
+        switch (this.data.good.type) {
+          case "1":
+            type1 = "教材图书"
+            break;
+          case "2":
+            type1 = "服饰鞋包"
+            break;
+          case "3":
+            type1 = "数码产品"
+            break;
+          case "4":
+            type1 = "运动户外"
+            break;
+          case "5":
+            type1 = "家具用品"
+            break;
+          case "6":
+            type1 = "玩具乐器"
+            break;
+          case "7":
+            type1 = "办公用品"
+            break;
+          case "8":
+            type1 = "票务卡券"
+            break;
+          default:
+            type1 = "其他"
+            break;
+        }
+        switch (this.data.good.transType) {
+          case "1":
+            transType1 = "面交"
+            break;
+          case "1":
+            transType1 = "自取"
+            break;
+          default:
+            transType1 = "快递"
+            break;
+        }
+        this.setData({
+          type: type1,
+          transType: transType1
+        })
+        // console.log(this.data.good)
+      })
   }
 })

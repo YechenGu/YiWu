@@ -1,33 +1,38 @@
 <!--pages/good/good.wxml-->
-<scroll-view style="height:95vh" scroll-y scroll-with-animation class="goodContent">
+<scroll-view style="height:100vh" scroll-y scroll-with-animation class="goodContent">
   <view class="title">
-    <text class="t-title">这是标题</text>
+    <text class="t-title">{{good.title}}</text>
   </view>
   <view class="price">
-    <text class="t-price">这是价格</text>
+    <text class="t-price">{{good.price}}</text>
   </view>
   <view class="tags">
-    <van-tag round type="danger" size="medium">自取</van-tag>
-    <van-tag round type="danger" size="medium">服饰鞋包</van-tag>
-    <van-tag round type="danger" size="medium">东校区</van-tag>
+    <van-tag round type="danger" size="medium">{{transType}}</van-tag>
+    <van-tag round type="danger" size="medium">{{type}}</van-tag>
+    <van-tag round type="danger" size="medium">{{good.region}}</van-tag>
   </view>
   <van-divider />
   <view class="detail">
     <text class="t-detail">二手详情</text>
   </view>
   <view class="info">
-    <text class="t-info">这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍</text>
+    <text class="t-info">{{good.detail}}</text>
   </view>
   <view class="goodImg">
-    <image style="width: 100%; height: 400rpx;" mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+    <van-grid column-num="1" gutter="{{ 10 }}">
+            <van-grid-item use-slot wx:for="{{ good.img }}" wx:key="id">
+              <image style="width: 100%; height: 300rpx;" mode="aspectFit"
+                src="{{item}}" />
+            </van-grid-item>
+          </van-grid>
   </view>
   <view class="report">
     <van-button type="default" size="small" bind:click="report">举报</van-button>
   </view>
   <view class="TaSell">
-    <van-cell is-link title="TA还在卖" link-type="navigateTo" url="/pages/TaSell/TaSell" />
+    <van-cell is-link title="TA还在卖" link-type="navigateTo" url="/pages/TaSell/TaSell?id={{good._openid}}"/>
   </view>
-
+</scroll-view>
   <!-- 底部栏 -->
   <van-goods-action>
     <van-goods-action-icon icon="like-o" text="收藏" bind:click="collect" />
@@ -39,4 +44,3 @@
   <!-- 分享面板 -->
   <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
     bind:close="onClose" />
-</scroll-view>
