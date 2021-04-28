@@ -1,8 +1,9 @@
 <scroll-view style="height:95vh" scroll-y scroll-with-animation class="goodContent">
   <view wx:for="{{goodlist}}" wx:key="id">
-  <van-card price="{{item.price}}"title="{{item.title}}" thumb="{{item.img[0]}}">
+  <van-dialog id="van-dialog" />
+  <van-card price="{{item.price}}" desc="{{item.detail}}" title="{{item.title}}" thumb="{{item.img[0]}}">
     <view slot="footer">
-      <van-button icon="delete-o" size="mini" bindtap="delete"></van-button>
+      <van-button icon="delete-o" size="mini" bindtap="delete" data-id="{{item._id}}"></van-button>
     </view>
   </van-card>
 </view>
