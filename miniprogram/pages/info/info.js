@@ -66,20 +66,18 @@ Page({
         icon:'none'
       })
     } else {
-      //bug exists
-      // db.collection('info')
-      // .where({
-      //   openid:_.eq(this.data.openid)
-      // }).set({
-      //   data:{
-      //     region:this.data.region,
-      //     phone:this.data.phone,
-      //     wechat:this.data.wechat,
-      //     qq:this.data.qq
-      //   }
-      // }).then(res=>{
-      //   console.log(res)
-      // })
+      db.collection('info')
+      .doc(this.data.openid)
+      .set({
+        data:{
+          region:this.data.region,
+          phone:this.data.phone,
+          wechat:this.data.wechat,
+          qq:this.data.qq
+        }
+      }).then(res=>{
+        console.log(res)
+      })
     }
   },
 
