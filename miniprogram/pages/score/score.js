@@ -19,21 +19,32 @@ Page({
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
-        console.log('云函数获取到的openid:', res.result.openid)
         var openid = res.result.openid;
         that.setData({
           openid: openid
         })
         db.collection('score')
-          .doc(openid)
+          .where({
+            _openid: openid
+          })
           .get()
           .then(res => {
-            console.log(res)
             that.setData({
+              score: res.data[0].score
             })
           })
-          .catch(err=>{
-            console.err
+          .catch(err => {
+            db.collection('score')
+              .add({
+                data:{
+                  score:0
+                }
+              })
+              .then(res => {
+                that.setData({
+                  score: 0
+                })
+              })
           })
       }
     })

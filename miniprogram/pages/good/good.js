@@ -63,7 +63,6 @@ Page({
   },
 
   exchange() {
-
   },
 
   contact() {
