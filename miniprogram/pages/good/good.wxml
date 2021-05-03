@@ -31,27 +31,34 @@
   <view class="TaSell">
     <van-cell is-link title="TA还在卖" link-type="navigateTo" url="/pages/TaSell/TaSell?id={{good._openid}}" />
   </view>
-
+  <!-- 确认弹窗 -->
+  <van-dialog id="van-dialog" />
   <!-- 底部栏 -->
   <van-goods-action>
-    <van-goods-action-icon icon="like-o" text="收藏" bind:click="collect" />
+    <block wx:if="{{hasCollected}}">
+      <van-goods-action-icon icon="like" text="收藏" bind:click="collect" />
+    </block>
+    <block wx:else>
+      <van-goods-action-icon icon="like-o" text="收藏" bind:click="collect" />
+    </block>
     <van-goods-action-icon icon="share-o" text="分享" bind:click="onClick" />
-    <van-goods-action-button text="立即兑换" type="info" disabled round bind:click="exchange" />
+    <van-goods-action-button text="立即兑换" type="info" disabled="{{notScore}}" round bind:click="exchange" />
     <van-goods-action-button text="联系卖家" type="info" round bind:click="contact" />
   </van-goods-action>
 </scroll-view>
 
 <!-- 分享面板 -->
-<van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect" bind:close="onClose" />
+<van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
+  bind:close="onClose" />
 
 <!-- 弹出窗口 -->
 <van-popup show="{{ showPick }}" position="bottom" bind:close="pickClose">
-    <van-cell title="复制手机号" bind:click="copyPhone">
-    </van-cell>
-    <van-cell title="复制微信号" bind:click="copyWechat">
-    </van-cell>
-    <van-cell title="复制QQ号" bind:click="copyQQ">
-    </van-cell>
-    <van-cell title="取消" bind:click="copyCancel">
-    </van-cell>
+  <van-cell title="复制手机号" bind:click="copyPhone">
+  </van-cell>
+  <van-cell title="复制微信号" bind:click="copyWechat">
+  </van-cell>
+  <van-cell title="复制QQ号" bind:click="copyQQ">
+  </van-cell>
+  <van-cell title="取消" bind:click="copyCancel">
+  </van-cell>
 </van-popup>
