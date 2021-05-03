@@ -24,7 +24,8 @@ Page({
         icon: 'link'
       }
     ],
-    showShare: false
+    showShare: false,
+    showPick:false
   },
 
   /**
@@ -66,7 +67,112 @@ Page({
   },
 
   contact() {
+    this.setData({
+      showPick: true
+    });
+  },
 
+  pickClose() {
+    this.setData({
+      showPick: false
+    });
+  },
+
+  /**
+   * 联系卖家相关
+   * @param {*} event 
+   */
+  copyPhone(){
+    let seller = this.data.good._openid
+    db.collection("info")
+    .doc(seller)
+    .get()
+    .then(res=>{
+      let phone = res.data.phone
+      if (phone == "") {
+        wx.showToast({
+          title: '暂未提供手机号',
+          icon: 'error'
+        })
+      } else {
+        wx.setClipboardData({
+          data: phone,
+          success: function(res) {
+            wx.showToast({
+              title: '手机号已复制',
+            })
+          }
+        })
+      }
+      this.setData({
+        showPick:false
+      })
+    })
+    .catch(console.error)
+  },
+
+  copyWechat(){
+    let seller = this.data.good._openid
+    db.collection("info")
+    .doc(seller)
+    .get()
+    .then(res=>{
+      let wechat = res.data.wechat
+      if (wechat == "") {
+        wx.showToast({
+          title: '暂未提供微信号',
+          icon: 'error'
+        })
+      } else {
+        wx.setClipboardData({
+          data: wechat,
+          success: function(res) {
+            wx.showToast({
+              title: '微信号已复制',
+            })
+          }
+        })
+      }
+      this.setData({
+        showPick:false
+      })
+    })
+    .catch(console.error)
+  },
+
+  copyQQ(){
+    let seller = this.data.good._openid
+    db.collection("info")
+    .doc(seller)
+    .get()
+    .then(res=>{
+      let QQ = res.data.qq
+      if (QQ == "") {
+        wx.showToast({
+          title: '暂未提供QQ号',
+          icon: 'error'
+        })
+      } else {
+        wx.setClipboardData({
+          data: QQ,
+          success: function(res) {
+            wx.showToast({
+              title: 'QQ号已复制',
+            })
+          }
+        })
+      }
+      this.setData({
+        showPick:false
+      })
+    })
+    .catch(console.error)
+  },
+  
+  copyCancel(){
+    this.setData({
+      showPick: false
+    });
   },
 
   /**
