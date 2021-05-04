@@ -56,7 +56,7 @@
                             <van-picker columns="{{ columns }}" show-toolbar="true" toolbar-position="bottom" bind:cancel="pickCancel"
                             bind:confirm="pickConfirm" bind:change="pickChange" />
                         </van-popup>
-                        <!-- 提交按钮 -->
+                        <!-- 提交按钮 --> 
                         <view class="downbtn">
                             <van-row gutter="50">
                                 <van-col span="10"><van-button round width="200rpx" form-type="reset">重置</van-button></van-col>
