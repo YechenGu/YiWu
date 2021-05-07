@@ -27,8 +27,14 @@
               <view class="title">
                 <text class="t-title">{{item.title}}</text>
               </view>
-              <view class="price">
-                <text class="t-price">{{item.price}}</text>
+              <view wx:if="{{item.priceType == '3' }}" class="price">
+                <text class="t-price">免费</text>
+              </view>
+              <view wx:elif="{{item.priceType == '2' }}" class="price">
+                <text class="t-price">{{item.price}}积分</text>
+              </view>
+              <view wx:else class="price">
+                <text class="t-price">{{item.price}}元</text>
               </view>
             </van-grid-item>
           </van-grid>

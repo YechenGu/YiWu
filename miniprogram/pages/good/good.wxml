@@ -3,8 +3,14 @@
   <view class="title">
     <text class="t-title">{{good.title}}</text>
   </view>
-  <view class="price">
-    <text class="t-price">{{good.price}}</text>
+  <view wx:if="{{good.priceType == 3 }}" class="price">
+    <text class="t-price">免费</text>
+  </view>
+  <view wx:elif="{{good.priceType == 2 }}" class="price">
+    <text class="t-price">{{good.price}}积分</text>
+  </view>
+  <view wx:else class="price">
+    <text class="t-price">{{good.price}}元</text>
   </view>
   <view class="tags">
     <van-tag round type="danger" size="medium">{{transType}}</van-tag>
