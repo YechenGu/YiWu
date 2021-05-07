@@ -1,6 +1,6 @@
 <!--pages/score/score.wxml-->
 <view class="basic">
-  <image style="width: 100px; height: 100px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+  <image style="width: 200px; height: 200px; border-radius:50%" mode="aspectFill" src="../../icons/myScore.png" />
   <view class="score">
     <text class="t-score">{{score}}积分</text>
   </view>

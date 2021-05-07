@@ -22,7 +22,7 @@
     <!-- 我的发布 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/myPublish/myPublish">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/myPublish.png" />
         <view class="txt">
           <text>我的发布</text>
         </view>
@@ -31,7 +31,7 @@
     <!-- 我的收藏 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/collect/collect">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/collect.png" />
         <view class="txt">
           <text>我的收藏</text>
         </view>
@@ -40,7 +40,7 @@
     <!-- 我的积分 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/score/score">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/score.png" />
         <view class="txt">
           <text>我的积分</text>
         </view>
@@ -49,7 +49,7 @@
     <!-- 个人信息 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/info/info">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-4.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/info.png" />
         <view class="txt">
           <text>个人信息</text>
         </view>
@@ -57,7 +57,7 @@
     </view><!-- 意见反馈 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/report/report">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-5.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/report.png" />
         <view class="txt">
           <text>意见反馈</text>
         </view>
@@ -66,7 +66,7 @@
     <!-- 推荐我们 -->
     <view class="info-item">
       <van-grid-item use-slot bind:click="onClick">
-        <image style="width: 90px; height: 90px; border-radius:50%" src="https://img.yzcdn.cn/vant/apple-6.jpg" />
+        <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/recommend.png" />
         <view class="txt">
           <text>推荐我们</text>
         </view>

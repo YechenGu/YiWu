@@ -17,25 +17,30 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 测试",
+    "navigationBarTitleText": "易物",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#999",
-    "selectedColor": "#ff2d4a",
+    "selectedColor": "#87CEEB",
     "backgroundColor": "#fafafa",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "icons/index.png",
+        "selectedIconPath": "icons/indexSe.png"
       },
       {
         "pagePath": "pages/publish/publish",
-        "text": "发布"
+        "iconPath":"icons/publish.png",
+        "selectedIconPath": "icons/publish.png"
       },
       {
         "pagePath": "pages/my/my",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "icons/my.png",
+        "selectedIconPath": "icons/mySe.png"
       }
     ]
   },
