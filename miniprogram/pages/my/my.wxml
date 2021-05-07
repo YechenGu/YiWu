@@ -54,7 +54,8 @@
           <text>个人信息</text>
         </view>
       </van-grid-item>
-    </view><!-- 意见反馈 -->
+    </view>
+    <!-- 意见反馈 -->
     <view class="info-item">
       <van-grid-item use-slot link-type="navigateTo" url="/pages/report/report">
         <image style="width: 90px; height: 90px; border-radius:50%" src="../../icons/report.png" />

@@ -95,7 +95,11 @@ Page({
         message: '请与卖家联系收到物品或快递单号后再点击确定,兑换后您的积分将直接转入卖家账号',
       })
       .then(() => {
-        console.log('确定')
+        // console.log('确定')
+        wx.showToast({
+          title: '该功能正在开发中',
+          icon:'none'
+        })
       })
       .catch(() => {
         console.log('取消')

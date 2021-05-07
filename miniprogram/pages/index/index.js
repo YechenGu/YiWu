@@ -78,6 +78,12 @@ Page({
     });
   },
 
+  search(){
+    wx.navigateTo({
+      url: '../goodlist/goodlist?name='+this.data.toSearch,
+    })
+  },
+
   /**
    * 按钮事件
    */
