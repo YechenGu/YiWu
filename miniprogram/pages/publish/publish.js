@@ -9,6 +9,7 @@ Page({
     popUp: false,
     radio: '',
     title: '',
+    area:'',
     price: '',
     priceSe: '1',
     waySe: '1',
@@ -29,12 +30,11 @@ Page({
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
-        
-        _that.setData({
-          fileList: _that.data.fileList.concat(tempFilePaths)
-        })
         let __that = _that
         let uploads = [];
+        wx.showLoading({
+          title: '上传中',
+        })
         for (let i = 0; i < tempFilePaths.length; i++) {
           uploads[i] = new Promise((resolve, reject) => {
             wx.cloud.uploadFile({
@@ -44,14 +44,19 @@ Page({
                 console.log(res.fileID)
                 finallimgUrl.push(res.fileID)
                 console.log(finallimgUrl)
-                resolve(result)
+                resolve(res)
+                _that.setData({
+                  fileList: _that.data.fileList.concat(tempFilePaths)
+                })
+                wx.hideLoading({
+                  success: (res) => {},
+                })
               },
-              fail: err => {
-                console.log(err)
-              }
+              fail: console.error
             })
           })
         }
+        
         Promise.all(uploads).then((result) => {
           console.log("result is:" + result)
         })
@@ -94,7 +99,25 @@ Page({
   formSubmit: function (e) {
     if (e.detail.value.title.length == 0 || e.detail.value.describe.length == 0 || e.detail.value.price.length == 0) {
       wx.showToast({
-        title: '输入不能为空',
+        title: '标题、描述与价格不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+
+    if (finallimgUrl == '') {
+      wx.showToast({
+        title: '请上传至少一张图片',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+
+    if (this.data.radio == '' || this.data.region=='') {
+      wx.showToast({
+        title: '请选择商品分类与所在校区',
         icon: 'none',
         duration: 2000
       })
@@ -133,6 +156,7 @@ Page({
         data: publishobj
       })
       .then(res => {
+        this.formReset()
         wx.switchTab({
           url: '../index/index',
         })
@@ -153,6 +177,7 @@ Page({
       popUp: false,
       radio: '',
       title: '',
+      area:'',
       price: '',
       priceSe: '1',
       waySe: '1',
@@ -272,10 +297,6 @@ Page({
       showPick: false
     });
   },
-
-  onHide: function () {
-    this.formReset()
-  }
 })
 
 //存在bug:重置列表后，需要清楚的图片没有真正清楚，仍然会继续上传

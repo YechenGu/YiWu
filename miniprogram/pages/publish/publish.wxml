@@ -24,7 +24,7 @@
                     input-align='right' />
                 <view class="area">
                     <!-- 商品描述 -->
-                    <textarea confirm-type="done" name="describe" placeholder="描述您的二手:如品牌,价格,原价,转手原因等" />
+                    <textarea confirm-type="done" name="describe" value="{{area}}" placeholder="描述您的二手:如品牌,价格,原价,转手原因等" />
                     </view>
                         <!-- 商品分类 -->
                         <van-cell title="选择分类" value="{{radio}}" is-link bind:click="showPopup" />
