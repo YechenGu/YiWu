@@ -8,22 +8,34 @@
   </van-search>
 
   <view class="joinImg">
-    <van-image width="375" height="10rem" fit="fill" src="https://img0.baidu.com/it/u=2114305751,1497064756&fm=26&fmt=auto&gp=0.jpg" bind:click="joinUs" />
+    <van-image width="375" height="10rem" fit="fill"
+      src="https://img0.baidu.com/it/u=2114305751,1497064756&fm=26&fmt=auto&gp=0.jpg" bind:click="joinUs" />
   </view>
 
   <view class="tabs">
     <van-tabs swipeable animated active="{{ tabActive }}" bind:change="tabChange">
       <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}">
         <view class="chooseType">
-          <van-button round size="mini" bind:click="full">全部</van-button>
-          <van-button round size="mini" bind:click="score">积分兑换</van-button>
-          <van-button round size="mini" bind:click="free">免费</van-button>
+          <block wx:if="{{showType == 0}}">
+            <van-button round size="mini" bind:click="full" type="danger">全部</van-button>
+            <van-button round size="mini" bind:click="score">积分兑换</van-button>
+            <van-button round size="mini" bind:click="free">免费</van-button>
+          </block>
+          <block wx:elif="{{showType == 1}}">
+            <van-button round size="mini" bind:click="full">全部</van-button>
+            <van-button round size="mini" bind:click="score" type="danger">积分兑换</van-button>
+            <van-button round size="mini" bind:click="free">免费</van-button>
+          </block>
+          <block wx:else>
+            <van-button round size="mini" bind:click="full">全部</van-button>
+            <van-button round size="mini" bind:click="score">积分兑换</van-button>
+            <van-button round size="mini" bind:click="free" type="danger">免费</van-button>
+          </block>
         </view>
         <scroll-view style="height:60vh" scroll-y scroll-with-animation class="goodContent">
           <van-grid column-num="2" gutter="{{ 10 }}">
             <van-grid-item use-slot url="/pages/good/good?id={{item._id}}" wx:for="{{ goodlist }}" wx:key="id">
-              <image style="width: 100%; height: 300rpx;" mode="aspectFit"
-                src="{{item.img[0]}}" />
+              <image style="width: 100%; height: 300rpx;" mode="aspectFit" src="{{item.img[0]}}" />
               <view class="title">
                 <text class="t-title">{{item.title}}</text>
               </view>

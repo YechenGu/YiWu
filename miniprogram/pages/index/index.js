@@ -47,7 +47,8 @@ Page({
         value:"其他"
       },
     ],
-    good:""
+    good:"",
+    showType:0
   },
 
   /**
@@ -58,11 +59,12 @@ Page({
       tabActive:e.detail.index
     });
     var index = this.data.tabActive + 1 +"";
-    db.collection('good').where({
+    db.collection('good').limit(10).where({
       type:_.eq(index)
     }).get().then(res=>{
       this.setData({
-        goodlist:res.data
+        goodlist:res.data,
+        showType:0
       })
     })
   },
@@ -81,35 +83,38 @@ Page({
    */
   full(){
     var index = this.data.tabActive + 1 +"";
-    db.collection("good").where({
+    db.collection("good").limit(10).where({
       type:_.eq(index)
     }).get().then(res=>{
       this.setData({
-        goodlist:res.data
+        goodlist:res.data,
+        showType:0
       })
     })
   },
 
   score(){
     var index = this.data.tabActive + 1 +"";
-    db.collection("good").where({
+    db.collection("good").limit(10).where({
       priceType:_.eq("2"),
       type:_.eq(index)
     }).get().then(res=>{
       this.setData({
-        goodlist:res.data
+        goodlist:res.data,
+        showType:1
       })
     })
   },
 
   free(){
     var index = this.data.tabActive + 1 +"";
-    db.collection("good").where({
+    db.collection("good").limit(10).where({
       priceType:_.eq("3"),
       type:_.eq(index)
     }).get().then(res=>{
       this.setData({
-        goodlist:res.data
+        goodlist:res.data,
+        showType:2
       })
     })
   },
@@ -127,7 +132,7 @@ Page({
    */
   onShow: function () {
     var index = this.data.tabActive + 1 +"";
-    db.collection('good').where({
+    db.collection('good').limit(10).where({
       type:_.eq(index)
     }).get().then(res=>{
       this.setData({

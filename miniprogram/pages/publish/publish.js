@@ -29,12 +29,9 @@ Page({
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
-
+        
         _that.setData({
           fileList: _that.data.fileList.concat(tempFilePaths)
-        })
-        wx.showLoading({
-          title: '上传中',
         })
         let __that = _that
         let uploads = [];
@@ -44,20 +41,19 @@ Page({
               cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
               filePath: tempFilePaths[i], // 小程序临时文件路径
               success: res => {
+                console.log(res.fileID)
                 finallimgUrl.push(res.fileID)
+                console.log(finallimgUrl)
                 resolve(result)
               },
-              fail: err=>{
+              fail: err => {
                 console.log(err)
               }
             })
           })
         }
-        wx.hideLoading({
-          success: (res) => {},
-        })
         Promise.all(uploads).then((result) => {
-          console.log("result is:"+result)
+          console.log("result is:" + result)
         })
       }
     })
@@ -70,14 +66,14 @@ Page({
    */
   closeimg(e) {
     let currentTargetimgindex = e.currentTarget.dataset.index
-    console.log("currentTargetimgindex is"+currentTargetimgindex)
+    console.log("currentTargetimgindex is" + currentTargetimgindex)
     this.data.fileList.splice(currentTargetimgindex, 1)
-    console.log("index is"+finallimgUrl[currentTargetimgindex])
+    console.log("index is" + finallimgUrl[currentTargetimgindex])
     wx.cloud.deleteFile({
       fileList: [finallimgUrl[currentTargetimgindex]],
       success: res => {
         // handle success
-        console.log("list is"+res.fileList)
+        console.log("list is" + res.fileList)
       },
       fail: err => {
         console.log("error")
@@ -106,11 +102,11 @@ Page({
     }
 
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    
+
     let publishimg = finallimgUrl
     let title = e.detail.value.title
     let describe = e.detail.value.describe
-    let price = e.detail.value.price 
+    let price = e.detail.value.price
     let priceType = this.data.priceSe
     let transType = this.data.waySe
     let type = this.data.radio
@@ -118,14 +114,14 @@ Page({
 
     let publishobj = {
       img: publishimg,
-      title:title,
+      title: title,
       detail: describe,
       price: price,
       time: new Date().toLocaleString(),
-      priceType:priceType,
-      transType:transType,
-      type:type,
-      region:region
+      priceType: priceType,
+      transType: transType,
+      type: type,
+      region: region
     }
 
     wx.showLoading({
@@ -144,7 +140,7 @@ Page({
           success: (res) => {},
         })
       })
-      
+
   },
 
   /**
@@ -152,21 +148,21 @@ Page({
    */
   formReset: function () {
     this.setData({
-     finallimgUrl: '',
-     fileList: [],
-     popUp: false,
-     radio: '',
-     title: '',
-     price: '',
-     priceSe: '1',
-     waySe: '1',
-     placePrice: '元',
-     disPrice: false,
-     region: '',
-     showPick: false,
+      finallimgUrl: '',
+      fileList: [],
+      popUp: false,
+      radio: '',
+      title: '',
+      price: '',
+      priceSe: '1',
+      waySe: '1',
+      placePrice: '元',
+      disPrice: false,
+      region: '',
+      showPick: false,
     })
   },
-  
+
 
   /**
    * 弹出层相关
@@ -277,7 +273,7 @@ Page({
     });
   },
 
-  onHide:function(){
+  onHide: function () {
     this.formReset()
   }
 })
