@@ -1,5 +1,5 @@
 <!--pages/good/good.wxml-->
-<scroll-view style="height:100vh" scroll-y scroll-with-animation class="goodContent">
+<scroll-view style="height:90vh" scroll-y scroll-with-animation class="goodContent">
   <view class="title">
     <text class="t-title">{{good.title}}</text>
   </view>
