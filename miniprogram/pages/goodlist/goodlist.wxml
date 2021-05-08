@@ -2,8 +2,8 @@
 <view>
   <!-- 顶部选择器 -->
   <van-dropdown-menu active-color="#1989fa">
-    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bind:change="priceChoose"/>
-    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" bind:change="regionChoose"/>
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bind:change="priceChoose" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" bind:change="regionChoose" />
     <van-dropdown-item id="item" title="{{ itemTitle }}">
       <!-- 价格区间 -->
       <van-cell>
@@ -59,23 +59,27 @@
   </van-dropdown-menu>
 
   <scroll-view style="height:90vh" scroll-y scroll-with-animation class="goodContent">
-    <van-grid column-num="2" gutter="{{ 10 }}">
-      <van-grid-item use-slot url="/pages/good/good?id={{item._id}}" wx:for="{{ goodlist}}" wx:key="id">
-              <image style="width: 100%; height: 300rpx;" mode="aspectFit"
-                src="{{item.img[0]}}" />
-              <view class="title">
-                <text class="t-title">{{item.title}}</text>
-              </view>
-              <view wx:if="{{item.priceType == '3' }}" class="price">
-                <text class="t-price">免费</text>
-              </view>
-              <view wx:elif="{{item.priceType == '2' }}" class="price">
-                <text class="t-price">{{item.price}}积分</text>
-              </view>
-              <view wx:else class="price">
-                <text class="t-price">{{item.price}}元</text>
-              </view>
-            </van-grid-item>
-    </van-grid>
+    <block wx:if="{{goodlist != ''}}">
+      <van-grid column-num="2" gutter="{{ 10 }}">
+        <van-grid-item use-slot url="/pages/good/good?id={{item._id}}" wx:for="{{ goodlist}}" wx:key="id">
+          <image style="width: 100%; height: 300rpx;" mode="aspectFit" src="{{item.img[0]}}" />
+          <view class="title">
+            <text class="t-title">{{item.title}}</text>
+          </view>
+          <view wx:if="{{item.priceType == '3' }}" class="price">
+            <text class="t-price">免费</text>
+          </view>
+          <view wx:elif="{{item.priceType == '2' }}" class="price">
+            <text class="t-price">{{item.price}}积分</text>
+          </view>
+          <view wx:else class="price">
+            <text class="t-price">{{item.price}}元</text>
+          </view>
+        </van-grid-item>
+      </van-grid>
+    </block>
+    <block wx:else>
+      <van-empty image="search" description="暂未搜索到对应商品" />
+    </block>
   </scroll-view>
 </view>

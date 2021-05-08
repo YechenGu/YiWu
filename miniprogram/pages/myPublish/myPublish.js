@@ -43,6 +43,9 @@ Page({
       complete: res => {
         console.log('云函数获取到的openid:', res.result.openid)
         var openid = res.result.openid;
+        wx.showLoading({
+          title: '数据加载中',
+        })
         db.collection('good')
           .where({
             _openid: _.eq(openid)
@@ -51,6 +54,9 @@ Page({
           .then(res => {
             that.setData({
               goodlist: res.data
+            })
+            wx.hideLoading({
+              success: (res) => {},
             })
           })
       }

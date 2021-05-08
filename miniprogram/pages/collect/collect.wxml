@@ -1,10 +1,15 @@
 <scroll-view style="height:95vh" scroll-y scroll-with-animation class="goodContent">
-  <view wx:for="{{goodlist}}" wx:key="id">
-  <van-dialog id="van-dialog" />
-  <van-card price="{{item.price}}" desc="{{item.detail}}" title="{{item.title}}" thumb="{{item.img}}">
-    <view slot="footer">
-      <van-button icon="delete-o" size="mini" bindtap="delete" data-id="{{item._id}}"></van-button>
+  <block wx:if="{{goodlist != ''}}">
+    <view wx:for="{{goodlist}}" wx:key="id">
+      <van-dialog id="van-dialog" />
+      <van-card price="{{item.price}}" desc="{{item.detail}}" title="{{item.title}}" thumb="{{item.img}}">
+        <view slot="footer">
+          <van-button icon="delete-o" size="mini" bindtap="delete" data-id="{{item._id}}"></van-button>
+        </view>
+      </van-card>
     </view>
-  </van-card>
-</view>
+  </block>
+  <block wx:else>
+    <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="收藏夹里空空如也" />
+  </block>
 </scroll-view>
