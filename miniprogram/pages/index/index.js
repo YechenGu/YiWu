@@ -11,6 +11,10 @@ Page({
     tabActive:0,
     tabs:[
       {
+        id:0,
+        value:"推荐"
+      },
+      {
         id:1,
         value:"教材图书"
       },
@@ -58,15 +62,25 @@ Page({
     this.setData({
       tabActive:e.detail.index
     });
-    var index = this.data.tabActive + 1 +"";
-    db.collection('good').limit(10).where({
-      type:_.eq(index)
-    }).get().then(res=>{
-      this.setData({
-        goodlist:res.data,
-        showType:0
+    var index = this.data.tabActive + "";
+    if (index == "0") {
+      db.collection('good').limit(10)
+      .get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:0
+        })
       })
-    })
+    } else {
+      db.collection('good').limit(10).where({
+        type:_.eq(index)
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:0
+        })
+      })
+    }
   },
 
   /**
@@ -88,41 +102,73 @@ Page({
    * 按钮事件
    */
   full(){
-    var index = this.data.tabActive + 1 +"";
-    db.collection("good").limit(10).where({
-      type:_.eq(index)
-    }).get().then(res=>{
-      this.setData({
-        goodlist:res.data,
-        showType:0
+    var index = this.data.tabActive + "";
+    if (index == "0") {
+      db.collection("good").limit(10)
+      .get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:0
+        })
       })
-    })
+    } else {
+      db.collection("good").limit(10).where({
+        type:_.eq(index)
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:0
+        })
+      })
+    }
   },
 
   score(){
-    var index = this.data.tabActive + 1 +"";
-    db.collection("good").limit(10).where({
-      priceType:_.eq("2"),
-      type:_.eq(index)
-    }).get().then(res=>{
-      this.setData({
-        goodlist:res.data,
-        showType:1
+    var index = this.data.tabActive + "";
+    if (index == "0") {
+      db.collection("good").limit(10).where({
+        priceType:_.eq("2")
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:1
+        })
       })
-    })
+    } else {
+      db.collection("good").limit(10).where({
+        priceType:_.eq("2"),
+        type:_.eq(index)
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:1
+        })
+      })
+    }
   },
 
   free(){
-    var index = this.data.tabActive + 1 +"";
-    db.collection("good").limit(10).where({
-      priceType:_.eq("3"),
-      type:_.eq(index)
-    }).get().then(res=>{
-      this.setData({
-        goodlist:res.data,
-        showType:2
+    var index = this.data.tabActive + "";
+    if (index == "0") {
+      db.collection("good").limit(10).where({
+        priceType:_.eq("3")
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:2
+        })
       })
-    })
+    } else {
+      db.collection("good").limit(10).where({
+        priceType:_.eq("3"),
+        type:_.eq(index)
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data,
+          showType:2
+        })
+      })
+    }
   },
   /**
    * 图片事件
@@ -137,14 +183,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var index = this.data.tabActive + 1 +"";
-    db.collection('good').limit(10).where({
-      type:_.eq(index)
-    }).get().then(res=>{
-      this.setData({
-        goodlist:res.data
+    var index = this.data.tabActive + "";
+    if (index == "0") {
+      db.collection('good').limit(10)
+      .get().then(res=>{
+        this.setData({
+          goodlist:res.data
+        })
       })
-    })
+    } else {
+      db.collection('good').limit(10).where({
+        type:_.eq(index)
+      }).get().then(res=>{
+        this.setData({
+          goodlist:res.data
+        })
+      })
+    }
   },
 
   onHide: function(){
