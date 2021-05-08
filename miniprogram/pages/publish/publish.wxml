@@ -63,6 +63,8 @@
                                 <van-col span="10"><van-button type="info" round width="200rpx" form-type="submit">发布</van-button></van-col>
                             </van-row>
                         </view>
+
+                        <van-dialog id="van-dialog" />
             </view>
 
             <!-- 弹出层 -->

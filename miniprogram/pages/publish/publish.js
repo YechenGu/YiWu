@@ -1,6 +1,6 @@
-// pages/publish/publish.js
-const db = wx.cloud.database()
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
+const db = wx.cloud.database()
 let finallimgUrl = []
 
 Page({
@@ -18,6 +18,7 @@ Page({
     region: '',
     showPick: false,
     columns: ['东校区', '中部校区', '西校区', '新校区'],
+    openid:''
   },
 
   /**
@@ -297,6 +298,35 @@ Page({
       showPick: false
     });
   },
+
+  onShow: function (options) {
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log('云函数获取到的openid:', res.result.openid)
+        var openid = res.result.openid;
+        this.setData({
+          openid: openid
+        })
+        db.collection("info")
+          .doc(openid)
+          .get()
+          .then(res => {
+            if (res.data.phone == "" && res.data.wechat == "" && res.data.qq == "") {
+              Dialog.alert({
+                title: '请补充个人信息',
+                message: '只有补充完善您的个人信息,买家才方便联系您哦',
+              }).then(() => {
+                wx.navigateTo({
+                  url: '../info/info',
+                })
+              });
+            }
+          })
+          .catch(console.error)
+      }
+    })
+  }
 })
 
-//存在bug:重置列表后，需要清楚的图片没有真正清楚，仍然会继续上传
+//存在漏洞:删除图片后，云数据库中的图片没有被删除

@@ -1,3 +1,5 @@
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 const db = wx.cloud.database()
 const _ = db.command
 
@@ -50,7 +52,6 @@ Page({
   },
 
   onCancel() {
-    console.log('取消')
     this.setData({ show: false });
   },
 
@@ -76,7 +77,13 @@ Page({
           qq:this.data.qq
         }
       }).then(res=>{
-        console.log(res)
+        Dialog.alert({
+          message: '信息更新成功'
+        }).then(() => {
+          wx.navigateBack({
+            delta: 1,
+          })
+        });
       })
     }
   },
@@ -94,6 +101,18 @@ Page({
         that.setData({
           openid:openid
         })
+        db.collection("info")
+        .doc(openid)
+        .get()
+        .then(res=>{
+          that.setData({
+            region:res.data.region,
+            phone:res.data.phone,
+            wechat:res.data.wechat,
+            qq:res.data.qq
+          })
+        })
+        .catch(console.error)
       }
     })
   }

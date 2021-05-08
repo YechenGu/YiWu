@@ -24,4 +24,6 @@
   <van-goods-action>
     <van-goods-action-button text="提交" type="info" bind:click="submit" />
   </van-goods-action>
+
+  <van-dialog id="van-dialog" />
 </view>
