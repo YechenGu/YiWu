@@ -124,11 +124,16 @@ Page({
    */
   copyPhone() {
     let seller = this.data.good._openid
+    console.log("seller is "+seller)
     db.collection("info")
-      .doc(seller)
+      .where({
+        _openid:seller+""
+      })
+      // .doc(seller)
       .get()
       .then(res => {
         let phone = res.data.phone
+        console.log("phone is "+phone)
         if (phone == "") {
           wx.showToast({
             title: '暂未提供手机号',
