@@ -98,7 +98,7 @@ Page({
         // console.log('确定')
         wx.showToast({
           title: '该功能正在开发中',
-          icon:'none'
+          icon: 'none'
         })
       })
       .catch(() => {
@@ -124,16 +124,13 @@ Page({
    */
   copyPhone() {
     let seller = this.data.good._openid
-    console.log("seller is "+seller)
+    console.log("seller is " + seller)
     db.collection("info")
-      .where({
-        _openid:seller+""
-      })
-      // .doc(seller)
+      .doc(seller)
       .get()
       .then(res => {
+        console.log(res.data)
         let phone = res.data.phone
-        console.log("phone is "+phone)
         if (phone == "") {
           wx.showToast({
             title: '暂未提供手机号',
@@ -341,3 +338,4 @@ Page({
 })
 
 //bug:可能会出现底部功能栏无法显示
+//bug:无法查看其他人的商品
