@@ -39,8 +39,10 @@
   </view>
   <!-- 确认弹窗 -->
   <van-dialog id="van-dialog" />
-  <!-- 底部栏 -->
-  <van-goods-action>
+</scroll-view>
+
+<!-- 底部栏 -->
+<van-goods-action>
     <block wx:if="{{hasCollected}}">
       <van-goods-action-icon icon="like" text="收藏" bind:click="collect" />
     </block>
@@ -51,7 +53,6 @@
     <van-goods-action-button text="立即兑换" type="info" disabled="{{notScore}}" round bind:click="exchange" />
     <van-goods-action-button text="联系卖家" type="info" round bind:click="contact" />
   </van-goods-action>
-</scroll-view>
 
 <!-- 分享面板 -->
 <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
