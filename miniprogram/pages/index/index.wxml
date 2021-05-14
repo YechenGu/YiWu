@@ -13,7 +13,7 @@
   </view>
 
   <view class="tabs">
-    <van-tabs swipeable animated active="{{ tabActive }}" bind:change="tabChange">
+    <van-tabs animated active="{{ tabActive }}" bind:change="tabChange">
       <van-tab wx:for="{{tabs}}" wx:key="id" title="{{item.value}}">
         <view class="chooseType">
           <block wx:if="{{showType == 0}}">

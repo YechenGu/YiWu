@@ -20,8 +20,8 @@
             </view>
             <view>
                 <!-- 标题 -->
-                <van-field label="标题" clearable value="{{title}}" name="title" placeholder="" border="{{ false }}"
-                    input-align='right' />
+                <van-field clearable value="{{title}}" name="title" placeholder="标题" border="{{ false }}"
+                    input-align='left' />
                 <view class="area">
                     <!-- 商品描述 -->
                     <textarea confirm-type="done" name="describe" value="{{area}}" placeholder="描述您的二手:如品牌,价格,原价,转手原因等" />
