@@ -173,7 +173,7 @@ Page({
    */
   formReset: function () {
     this.setData({
-      finallimgUrl: '',
+      finallimgUrl: [],
       fileList: [],
       popUp: false,
       radio: '',

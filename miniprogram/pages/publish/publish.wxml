@@ -59,8 +59,8 @@
                         <!-- 提交按钮 -->  
                         <view class="downbtn">
                             <van-row gutter="50">
-                                <van-col span="10"><van-button round width="200rpx" form-type="reset">重置</van-button></van-col>
-                                <van-col span="10"><van-button type="info" round width="200rpx" form-type="submit">发布</van-button></van-col>
+                                <van-col span="12"><van-button round width="200rpx" form-type="reset">重置</van-button></van-col>
+                                <van-col span="12"><van-button type="info" round width="200rpx" form-type="submit">发布</van-button></van-col>
                             </van-row>
                         </view>
 
