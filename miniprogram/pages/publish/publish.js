@@ -1,7 +1,8 @@
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 const db = wx.cloud.database()
-let finallimgUrl = []
+// let finallimgUrl = []
+let finallimgUrl = ''
 
 Page({
   data: {
@@ -9,7 +10,7 @@ Page({
     popUp: false,
     radio: '',
     title: '',
-    area:'',
+    area: '',
     price: '',
     priceSe: '1',
     waySe: '1',
@@ -18,80 +19,52 @@ Page({
     region: '',
     showPick: false,
     columns: ['东校区', '中部校区', '西校区', '新校区'],
-    openid:''
+    openid: ''
   },
 
-  /**
-   * 上传图片
-   */
-  unloadimg() {
+  upload(event) {
     let _that = this
-    wx.chooseImage({
-      count: 1,
-      success(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        let __that = _that
-        let uploads = [];
-        wx.showLoading({
-          title: '上传中',
+    wx.showLoading({
+      title: '上传中',
+    })
+    wx.cloud.uploadFile({
+      cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
+      filePath: event.detail.file.url, // 小程序临时文件路径
+      success: res => {
+        finallimgUrl= res.fileID
+        console.log("final "+finallimgUrl)
+        console.log("file "+event.detail.file.url)
+        _that.setData({
+          fileList: _that.data.fileList.concat({url:event.detail.file.url})
         })
-        for (let i = 0; i < tempFilePaths.length; i++) {
-          uploads[i] = new Promise((resolve, reject) => {
-            wx.cloud.uploadFile({
-              cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
-              filePath: tempFilePaths[i], // 小程序临时文件路径
-              success: res => {
-                console.log(res.fileID)
-                finallimgUrl.push(res.fileID)
-                console.log(finallimgUrl)
-                resolve(res)
-                _that.setData({
-                  fileList: _that.data.fileList.concat(tempFilePaths)
-                })
-                wx.hideLoading({
-                  success: (res) => {},
-                })
-              },
-              fail: console.error
-            })
-          })
-        }
-        
-        Promise.all(uploads).then((result) => {
-          console.log("result is:" + result)
+        wx.hideLoading({
+          success: (res) => {},
         })
-      }
+      },
+      fail: console.error
     })
   },
 
-
-  /**
-   * 关闭图片
-   * @param {*} e 
-   */
-  closeimg(e) {
-    let currentTargetimgindex = e.currentTarget.dataset.index
-    console.log("currentTargetimgindex is" + currentTargetimgindex)
-    this.data.fileList.splice(currentTargetimgindex, 1)
-    console.log("index is" + finallimgUrl[currentTargetimgindex])
+  delete(event){
     wx.cloud.deleteFile({
-      fileList: [finallimgUrl[currentTargetimgindex]],
+      fileList: [finallimgUrl],
       success: res => {
-        // handle success
-        console.log("list is" + res.fileList)
+        finallimgUrl = ''
+        this.setData({
+          fileList: []
+        })
       },
       fail: err => {
         console.log("error")
       }
     })
-
-    finallimgUrl.splice(currentTargetimgindex, 1)
-    this.setData({
-      fileList: this.data.fileList
-    })
   },
 
+  preview(event){
+    wx.previewImage({
+      urls: [finallimgUrl],
+    })
+  },
 
   /**
    * 提交表单
@@ -116,7 +89,7 @@ Page({
       return
     }
 
-    if (this.data.radio == '' || this.data.region=='') {
+    if (this.data.radio == '' || this.data.region == '') {
       wx.showToast({
         title: '请选择商品分类与所在校区',
         icon: 'none',
@@ -127,7 +100,7 @@ Page({
 
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
 
-    let publishimg = finallimgUrl
+    let publishimg = [finallimgUrl]
     let title = e.detail.value.title
     let describe = e.detail.value.describe
     let price = e.detail.value.price
@@ -178,7 +151,7 @@ Page({
       popUp: false,
       radio: '',
       title: '',
-      area:'',
+      area: '',
       price: '',
       priceSe: '1',
       waySe: '1',
@@ -329,5 +302,73 @@ Page({
   }
 })
 
-//存在漏洞:删除图片后，云数据库中的图片没有被删除
-//修复bug:商品种类显示异常,模态框删除标志仍然显示
+  /**
+   * 上传图片
+   */
+  // unloadimg() {
+  //   let _that = this
+  //   wx.chooseImage({
+  //     count: 1,
+  //     success(res) {
+  //       // tempFilePath可以作为img标签的src属性显示图片
+  //       const tempFilePaths = res.tempFilePaths
+  //       let uploads = [];
+  //       wx.showLoading({
+  //         title: '上传中',
+  //       })
+  //       for (let i = 0; i < tempFilePaths.length; i++) {
+  //         uploads[i] = new Promise((resolve, reject) => {
+  //           wx.cloud.uploadFile({
+  //             cloudPath: new Date().getTime() + '.jpg', // 上传至云端的路径
+  //             filePath: tempFilePaths[i], // 小程序临时文件路径
+  //             success: res => {
+  //               console.log(res.fileID)
+  //               finallimgUrl.push(res.fileID)
+  //               console.log(finallimgUrl)
+  //               resolve(res)
+  //               console.log("test"+tempFilePaths)
+  //               _that.setData({
+  //                 fileList: _that.data.fileList.concat(tempFilePaths)
+  //               })
+  //               wx.hideLoading({
+  //                 success: (res) => {},
+  //               })
+  //             },
+  //             fail: console.error
+  //           })
+  //         })
+  //       }
+
+  //       Promise.all(uploads).then((result) => {
+  //         console.log("result is:" + result)
+  //       })
+  //     }
+  //   })
+  // },
+
+
+  // /**
+  //  * 关闭图片
+  //  * @param {*} e 
+  //  */
+  // closeimg(e) {
+  //   let currentTargetimgindex = e.currentTarget.dataset.index
+  //   console.log("currentTargetimgindex is" + currentTargetimgindex)
+  //   this.data.fileList.splice(currentTargetimgindex, 1)
+  //   console.log("index is" + finallimgUrl[currentTargetimgindex])
+  //   wx.cloud.deleteFile({
+  //     fileList: [finallimgUrl[currentTargetimgindex]],
+  //     success: res => {
+  //       // handle success
+  //       console.log("list is" + res.fileList)
+  //     },
+  //     fail: err => {
+  //       console.log("error")
+  //     }
+  //   })
+
+  //   finallimgUrl.splice(currentTargetimgindex, 1)
+  //   this.setData({
+  //     fileList: this.data.fileList
+  //   })
+  // }
