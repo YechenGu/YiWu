@@ -39,18 +39,6 @@
           <van-radio name="3">免费送</van-radio>
         </van-radio-group>
       </van-cell>
-      <!-- 发布时间 -->
-      <van-cell>
-        <view class="filter">
-          <text>发布时间</text>
-        </view>
-        <van-radio-group value="{{ radioTime }}" direction="horizontal" bind:change="radioTimeChange">
-          <van-radio name="1">不限</van-radio>
-          <van-radio name="2">1天内</van-radio>
-          <van-radio name="3">7天内</van-radio>
-          <van-radio name="4">14天内</van-radio>
-        </van-radio-group>
-      </van-cell>
       <!-- 提交筛选 -->
       <view style="padding: 15px;text-align:center">
         <van-button width="100%" round type="info" bind:click="submit">确定</van-button>

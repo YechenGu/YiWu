@@ -1,15 +1,11 @@
 <view class="area">
-  <textarea value="{{ report }}" confirm-type="done" placeholder="请输入反馈，以便我们提供更好的服务"/>
-  </view>
+  <van-field value="{{ report }}" type="textarea" placeholder="请输入您的反馈，方便我们提供更好的服务" autosize border="{{ false }}" bind:change="reportChange"/>
+</view>
 <van-divider />
 <view class="contact">
-  <van-field value="{{ contact }}" clearable label="邮箱/手机号" placeholder="请输入" bind:change="contactChange"/>
+  <van-field value="{{ contact }}" clearable label="邮箱/手机号" placeholder="请输入" bind:change="contactChange" />
 </view>
 <van-divider />
 <van-goods-action>
-  <van-goods-action-button
-    text="提交"
-    type="info"
-    bind:click="submit"
-  />
+  <van-goods-action-button text="提交" type="info" bind:click="submit" />
 </van-goods-action>

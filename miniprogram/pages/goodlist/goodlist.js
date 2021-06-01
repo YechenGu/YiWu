@@ -52,7 +52,6 @@ Page({
     maxPrice: '',
     radioTrans: '1',
     radioPrice: '1',
-    radioTime: '1',
   },
 
   /*
@@ -80,11 +79,6 @@ Page({
   radioPriceChange(event) {
     this.setData({
       radioPrice: event.detail,
-    });
-  },
-  radioTimeChange(event) {
-    this.setData({
-      radioTime: event.detail,
     });
   },
   /**

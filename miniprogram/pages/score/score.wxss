@@ -10,5 +10,5 @@
 .t-score{
   color: orange;
   font-weight: 600;
-  font-size: larger;
+  font-size: xx-large;
 }

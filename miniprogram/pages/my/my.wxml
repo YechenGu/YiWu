@@ -6,13 +6,13 @@
     </view>
     <view class="user-info">
       <text class="text-orange"
-        style="font-size: 32rpx; margin-bottom: 10rpx; font-weight: 600;">{{userInfo.nickName}}</text>
+        style="font-size: 40rpx; margin-bottom: 10rpx; font-weight: 600;">{{userInfo.nickName}}</text>
     </view>
   </view>
 </view>
 <view wx:else class="info-sumary" bindtap="goToLogin">
   <view class="user-info">
-    <text class="text-orange" style="font-size: 32rpx; margin-bottom: 10rpx; font-weight: 600;">点击登录</text>
+    <text class="text-orange" style="font-size: 40rpx; margin-bottom: 10rpx; font-weight: 600;">点击登录</text>
   </view>
 </view>
 

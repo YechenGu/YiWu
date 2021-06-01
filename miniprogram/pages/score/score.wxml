@@ -2,6 +2,6 @@
 <view class="basic">
   <image style="width: 200px; height: 200px; border-radius:50%" mode="aspectFill" src="../../icons/myScore.png" />
   <view class="score">
-    <text class="t-score">{{score}}积分</text>
+    <text class="t-score">{{score}} 积分</text>
   </view>
 </view>
