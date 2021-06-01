@@ -3,6 +3,16 @@ import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 const db = wx.cloud.database()
 // let finallimgUrl = []
 let finallimgUrl = ''
+let typeMap = new Map()
+typeMap.set("教材图书","1")
+typeMap.set("服饰鞋包","2")
+typeMap.set("数码产品","3")
+typeMap.set("运动户外","4")
+typeMap.set("家居用品","5")
+typeMap.set("玩具乐器","6")
+typeMap.set("办公文具","7")
+typeMap.set("票务卡券","8")
+typeMap.set("其他","9")
 
 Page({
   data: {
@@ -106,7 +116,7 @@ Page({
     let price = e.detail.value.price
     let priceType = this.data.priceSe
     let transType = this.data.waySe
-    let type = this.data.radio
+    let type = typeMap.get(this.data.radio) 
     let region = this.data.region
 
     let publishobj = {

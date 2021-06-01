@@ -75,39 +75,39 @@
                 <!-- 单选框 -->
                 <van-radio-group value="{{ radio }}" bind:change="radioChange">
                     <van-cell-group>
-                        <van-cell title="教材图书" clickable data-name="1" bind:click="radioClick">
+                        <van-cell title="教材图书" clickable data-name="教材图书" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="服饰鞋包" clickable data-name="2" bind:click="radioClick">
+                        <van-cell title="服饰鞋包" clickable data-name="服饰鞋包" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="数码产品" clickable data-name="3" bind:click="radioClick">
+                        <van-cell title="数码产品" clickable data-name="数码产品" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="运动户外" clickable data-name="4" bind:click="radioClick">
+                        <van-cell title="运动户外" clickable data-name="运动户外" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="家居用品" clickable data-name="5" bind:click="radioClick">
+                        <van-cell title="家居用品" clickable data-name="家居用品" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="玩具乐器" clickable data-name="6" bind:click="radioClick">
+                        <van-cell title="玩具乐器" clickable data-name="玩具乐器" bind:click="radioClick">
                         <van-radio use-icon-slot />
                         </van-cell>
 
-                        <van-cell title="办公文具" clickable data-name="7" bind:click="radioClick">
+                        <van-cell title="办公文具" clickable data-name="办公文具" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
                         
-                        <van-cell title="票务卡券" clickable data-name="8" bind:click="radioClick">
+                        <van-cell title="票务卡券" clickable data-name="票务卡券" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
 
-                        <van-cell title="其他" clickable data-name="9" bind:click="radioClick">
+                        <van-cell title="其他" clickable data-name="其他" bind:click="radioClick">
                         <van-radio use-icon-slot  />
                         </van-cell>
                     </van-cell-group>
