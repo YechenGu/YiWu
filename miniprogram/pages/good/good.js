@@ -217,6 +217,11 @@ Page({
     });
   },
 
+  preview(event){
+    console.log(event.currentTarget.dataset)
+    // TODO
+  },
+
   /**
    * 分享界面相关
    */

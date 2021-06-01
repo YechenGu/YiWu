@@ -27,7 +27,7 @@
   <view class="goodImg">
     <van-grid column-num="1" gutter="{{ 10 }}">
       <van-grid-item use-slot wx:for="{{ good.img }}" wx:key="id">
-        <image style="width: 100%; height: 300rpx;" mode="aspectFit" src="{{item}}" />
+        <image style="width: 100%; height: 300rpx;" mode="aspectFit" src="{{item}}" bindtap="preview"/>
       </van-grid-item>
     </van-grid>
   </view>

@@ -2,7 +2,8 @@
   <block wx:if="{{goodlist != ''}}">
     <view wx:for="{{goodlist}}" wx:key="id">
       <van-dialog id="van-dialog" />
-      <van-card price="{{item.price}}" desc="{{item.detail}}" title="{{item.title}}" thumb="{{item.img[0]}}" thumb-link="/pages/good/good?id={{item._id}}">
+      <van-card price="{{item.price}}" desc="{{item.detail}}" title="{{item.title}}" thumb="{{item.img[0]}}"
+        thumb-link="/pages/good/good?id={{item._id}}">
         <view slot="footer">
           <van-button icon="delete-o" size="mini" bindtap="delete" data-id="{{item._id}}"></van-button>
         </view>
