@@ -95,11 +95,94 @@ Page({
         message: '请与卖家联系收到物品或快递单号后再点击确定,兑换后您的积分将直接转入卖家账号',
       })
       .then(() => {
-        // console.log('确定')
-        wx.showToast({
-          title: '该功能正在开发中',
-          icon: 'none'
-        })
+        var seller = this.data.good._openid
+        var customer = this.data.openid
+        var num = this.data.good.price
+        if (seller == customer) {
+          wx.showToast({
+            title: '请不要兑换自己的商品',
+            icon: 'none'
+          })
+        } else {
+          var s_score;
+          var c_score;
+          //买家积分
+          db.collection("score")
+            .where({
+              _openid: customer
+            })
+            .get()
+            .then(res => {
+              c_score = res.data[0].score
+              console.log("c is" + c_score)
+              //卖家积分
+              db.collection("score")
+                .where({
+                  _openid: seller
+                })
+                .get()
+                .then(res => {
+                  s_score = res.data[0].score
+                  console.log("s is" + s_score)
+                  console.log("c is" + c_score)
+                  //积分大小判断
+                  console.log(c_score + "---" + num + "---" + s_score)
+                  if (c_score < num) {
+                    wx.showToast({
+                      title: '您的积分不足',
+                      icon: 'none'
+                    })
+                  } else {
+                    //积分交换
+                    //卖方增加
+                    console.log("seller is " + seller)
+                    db.collection("score")
+                      .where({
+                        _openid: seller
+                      })
+                      .set({
+                        data: {
+                          score: s_score + num
+                        }
+                      })
+                      .then(res => {
+                        买方减少
+                        db.collection("score")
+                          .where({
+                            _openid: customer
+                          })
+                          .set({
+                            data: {
+                              score: c_score - num
+                            }
+                          })
+                          .then(res => {
+                            //新建订单
+                            db.collection("order")
+                              .add({
+                                data: {
+                                  seller: seller,
+                                  customer: customer,
+                                  score: num,
+                                  time: new Date().toLocaleString()
+                                }
+                              })
+                              .then(res => {
+                                wx.showToast({
+                                  title: '兑换成功',
+                                  icon: 'none'
+                                })
+                              })
+                              .catch(console.error)
+                          })
+                          .catch(console.error)
+                      })
+                      .catch(console.error)
+                  }
+                })
+            })
+        }
+
       })
       .catch(() => {
         console.log('取消')
@@ -217,9 +300,10 @@ Page({
     });
   },
 
-  preview(event){
-    console.log(event.currentTarget.dataset)
-    // TODO
+  preview(event) {
+    wx.previewImage({
+      urls: [this.data.good.img[0]],
+    })
   },
 
   /**
