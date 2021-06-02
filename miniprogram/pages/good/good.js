@@ -146,7 +146,7 @@ Page({
                         }
                       })
                       .then(res => {
-                        买方减少
+                        // 买方减少
                         db.collection("score")
                           .where({
                             _openid: customer

@@ -67,7 +67,7 @@ Page({
         icon:'none'
       })
     } else {
-      db.collection('info')
+      db.collection("info")
       .doc(this.data.openid)
       .set({
         data:{
