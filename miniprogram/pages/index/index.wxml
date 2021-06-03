@@ -9,7 +9,7 @@
 
   <view class="joinImg">
     <van-image width="375" height="10rem" fit="fill"
-      src="https://img0.baidu.com/it/u=2114305751,1497064756&fm=26&fmt=auto&gp=0.jpg" bind:click="joinUs" />
+      src="https://img-blog.csdnimg.cn/20210603214010155.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_1,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NvdmlldDE5NDE=,size_1,color_FFFFFF,t_0" bind:click="joinUs" />
   </view>
 
   <view class="tabs">
