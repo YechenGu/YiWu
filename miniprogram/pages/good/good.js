@@ -17,16 +17,7 @@ Page({
         name: '微信',
         icon: 'wechat',
         openType: 'share'
-      },
-      {
-        name: '微博',
-        icon: 'weibo'
-      },
-      {
-        name: '复制链接',
-        icon: 'link'
-      }
-    ],
+      }],
     showShare: false,
     showPick: false,
     notScore: true,
