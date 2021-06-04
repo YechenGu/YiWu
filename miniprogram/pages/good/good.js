@@ -41,6 +41,7 @@ Page({
     let title = this.data.good.title
     let detail = this.data.good.detail
     let price = this.data.good.price
+    let priceType = this.data.good.priceType
     let img = this.data.good.img[0]
     if (this.data.hasCollected) {
       db.collection("collect")
@@ -66,6 +67,7 @@ Page({
             title: title,
             detail: detail,
             price: price,
+            priceType: priceType,
             img: img
           }
         })

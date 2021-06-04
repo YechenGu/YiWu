@@ -55,6 +55,7 @@ Page({
             that.setData({
               goodlist: res.data
             })
+            this.setType();
             wx.hideLoading({
               success: (res) => {},
             })
@@ -70,5 +71,21 @@ Page({
 
   },
 
+
+  setType() {
+    var anotherlist = this.data.goodlist
+    anotherlist.forEach(element => {
+      if (element.priceType == "1") {
+        element.price = element.price + "元"
+      }else if(element.priceType == "2"){
+        element.price = element.price + "积分"
+      }else{
+        element.price = "免费"
+      }
+    });
+    this.setData({
+      goodlist:anotherlist
+    })
+  }
   //是否需要验证登录状态，仍然存疑
 })
