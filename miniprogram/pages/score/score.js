@@ -35,14 +35,15 @@ Page({
           })
           .catch(err => {
             db.collection('score')
-              .add({
+              .doc(this.data.openid)
+              .set({
                 data:{
-                  score:0
+                  score:20
                 }
               })
               .then(res => {
                 that.setData({
-                  score: 0
+                  score: 20
                 })
               })
           })

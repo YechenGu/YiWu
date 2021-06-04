@@ -75,6 +75,13 @@
         {
           "name": "TaSell",
           "pathName": "pages/TaSell/TaSell",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "joinUs",
+          "pathName": "pages/joinUs/joinUs",
+          "query": "",
           "scene": null
         }
       ]

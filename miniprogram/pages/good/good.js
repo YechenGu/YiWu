@@ -128,9 +128,7 @@ Page({
                     //卖方增加
                     console.log("seller is " + seller)
                     db.collection("score")
-                      .where({
-                        _openid: seller
-                      })
+                      .doc(seller)
                       .set({
                         data: {
                           score: s_score + num
@@ -139,9 +137,7 @@ Page({
                       .then(res => {
                         // 买方减少
                         db.collection("score")
-                          .where({
-                            _openid: customer
-                          })
+                          .doc(customer)
                           .set({
                             data: {
                               score: c_score - num
